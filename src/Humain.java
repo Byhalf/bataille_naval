@@ -1,5 +1,3 @@
-package games;
-
 import java.util.Scanner;
 
 public class Humain extends Joueur{

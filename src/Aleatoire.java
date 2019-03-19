@@ -1,5 +1,3 @@
-package games;
-
 import java.util.Random;
 
 public class Aleatoire extends Joueur{
