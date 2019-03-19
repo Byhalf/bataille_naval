@@ -14,6 +14,10 @@ public class Joueur{
 			}return true;
 		}return false;
 	}
+
+	public Bateau[][] getBateau(){
+		return bateau;
+	}
 		
 		
 
