@@ -1,5 +1,9 @@
+package modele;
+
+import modele.*;
+
 public class Mer {
-    //Il faut une classe bateau avec methode est_touche() qui renvoie un bool, Joueur avec get_bateau() qui renvoie les bateaux du joeurs,
+    //Il faut une classe modele.bateau avec methode est_touche() qui renvoie un bool, modele.joueurs.Joueur avec get_bateau() qui renvoie les bateaux du joeurs,
     public final static int TAILLE_GRILLE = 10;
     private Joueur joueur1;
     private Joueur joueur2;
@@ -16,7 +20,7 @@ public class Mer {
             return false;
         }
     }
-    public boolean placer_bateau(int x, int y, Direction d, Bateau bateau,Joueur joueur){
+    public boolean placer_bateau(int x, int y, Direction d, Bateau bateau, Joueur joueur){
         int[][] coord_bateau= bateau.get_coordone();
         Bateau[][] liste_bateaux = joueur.get_bateaux();
         if(est_placable(x,y,d,bateau,joueur)){
@@ -25,7 +29,7 @@ public class Mer {
             }
         }
     }
-    public boolean est_placable(int x, int y, Direction d, Bateau bateau,Joueur joueur){
+    public boolean est_placable(int x, int y, Direction d, Bateau bateau, Joueur joueur){
         int[][] coord_bateau= bateau.get_coordone();
         Bateau[][] liste_bateaux = joueur.get_bateaux();
 

@@ -1,6 +1,9 @@
+package modele.joueurs;
+
+
 import java.util.Random;
 
-public class Aleatoire extends Joueur{
+public class Aleatoire extends Joueur {
 
 	Random randomGenerator;
 	public String name;

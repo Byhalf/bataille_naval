@@ -1,6 +1,8 @@
+package modele.joueurs;
+
 import java.util.Scanner;
 
-public class Humain extends Joueur{
+public class Humain extends Joueur {
 	
 	public String name;
 

@@ -1,6 +1,6 @@
-package bateau;
+package modele.bateau;
 
-import Array<>;
+import modele.*;
 
 public class Bateau{
 	private int x, y, x1, y1, taille;
