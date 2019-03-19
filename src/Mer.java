@@ -34,8 +34,8 @@ public class Mer {
                 return false;
             if(coord[1]>=TAILLE_GRILLE || coord[1]<0)
                 return false;
-            for(Bateau bateau:liste_bateaux){
-                if(bateau.est_touche()){
+            for(Bateau autre_bateau:liste_bateaux){
+                if(autre_bateau.est_touche()){
                     return false;
                 }
 
