@@ -1,11 +1,11 @@
 package bateau;
 
-import Array<>;
+import java.util.*;
 
 public class Bateau{
 	private int x, y, x1, y1, taille;
 	private Direction dir;
-	private int[][] caseTouchee={{}};
+	public int[][] caseTouchee={{}};
 
 	public Bateau(int x, int y, int x1, int y1, int taille, Direction dir, int[][] caseTouchee){
 		this.x=x;
@@ -29,15 +29,15 @@ public class Bateau{
 		return this.taille;
 	}
 
-	public setCaseTouchee(int[][] caseTouchee){
+	public void setCaseTouchee(int[][] caseTouchee){
 		this.caseTouchee=caseTouchee;
 	}
 
-	public getCaseTouchee(){
+	public int[][] getCaseTouchee(){
 		return this.caseTouchee;
 	}
 
-	public getCoord(dir){
+	public int[][] getCoord(Direction dir){
 		int[][] tab={{}};
 		for (int i=0; i<getTaille(); i++){
 			if (dir.values==HORIZONTALE){
