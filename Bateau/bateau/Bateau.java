@@ -38,27 +38,28 @@ public class Bateau{
 	}
 
 	public int[][] getCoord(Direction dir){
-		int[][] tab={{}};
+		int[][] tab = new int[10][];
 		for (int i=0; i<getTaille(); i++){
-			if (dir.values==HORIZONTALE){
-				tab[i]={this.getX()+1*i,this.getY()};
+			if (dir==Direction.HORIZONTALE){
+				tab[i]=new int[]{this.getX()+1*i,this.getY()};
 			}
 			else{
-				tab[i]={this.getX(),this.getY()+1*i};
+				tab[i]=new int[]{this.getX(),this.getY()+1*i};
 			}
 		}
 		return tab;
 	}
 
-	public boolean estTouche(x1,y1){
+	public boolean estTouche(int x1, int y1){
 		for (int j=0; j<this.caseTouchee.length; j++){
-			if (getCaseTouchee()[j]=={x1,y1}){
+			if (getCaseTouchee()[j]==new int []{x1,y1}){
 				break;// Ajouter une exception (try catch)
 			}
+		}
 		coord=this.getCoord(dir);
 		for (int i=0; i<coord; i++){
-			if ({x1,y1}==coord[i]){
-				this.setCaseTouchee({x1,y1});
+			if (new int []{x1,y1}==coord[i]){
+				this.setCaseTouchee(new int []{x1,y1});
 				return true;
 			}
 		}
