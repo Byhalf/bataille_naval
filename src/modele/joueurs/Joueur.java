@@ -3,7 +3,7 @@ package modele.joueurs;
 import java.util.Scanner;
 
 public class Joueur{
-	
+	// Il faut une arrayList des bateaux
 	Bateau bateau[][] = new Bateau[10][10];
 
 	public boolean placerBateau(int x, int y, Direction d, Bateau bat){

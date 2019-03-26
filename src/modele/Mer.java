@@ -17,8 +17,7 @@ public class Mer {
         for(Bateau bateau: bateaux){
             if(bateau.est_touche(x,y))
                 return true;
-            return false;
-        }
+        }return false;
     }
     public boolean placer_bateau(int x, int y, Direction d, Bateau bateau, Joueur joueur){
         int[][] coord_bateau= bateau.get_coordone();
