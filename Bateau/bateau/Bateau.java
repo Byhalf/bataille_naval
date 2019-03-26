@@ -1,28 +1,18 @@
 package bateau;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class Bateau{
-	private int x, y, x1, y1, taille;
-<<<<<<< HEAD
-	private Direction dir;
-	public int[][] caseTouchee={{}};
-=======
-	private String direction;
-	private Array<int> tab=new Array();
->>>>>>> parent of 9f9472a... classe bateau
+	private int x, y, taille;
+	private ArrayList<Coordonnees> coordonnees = new ArrayList<Coordonnees>();
 
-	public Bateau(int x, int y, int x1, int y1, int taille, String direction, Array<int> tab){
+	public Bateau(int x, int y, int taille, Direction dir){
 		this.x=x;
 		this.y=y;
-		this.x1=x1;
-		this.y1=y1;
 		this.taille=taille;
-		this.direction=direction;
-		this.tab=tab;
+		this.coordonnees=getCoord(dir);
 	}
 
-<<<<<<< HEAD
 	public int getX(){
 		return this.x;
 	}
@@ -35,55 +25,35 @@ public class Bateau{
 		return this.taille;
 	}
 
-	public void setCaseTouchee(int[][] caseTouchee){
-		this.caseTouchee=caseTouchee;
-	}
-
-	public int[][] getCaseTouchee(){
-		return this.caseTouchee;
-	}
-
-	public int[][] getCoord(Direction dir){
-		int[][] tab = new int[10][];
+	public ArrayList<Coordonnees> getCoord(Direction dir){
 		for (int i=0; i<getTaille(); i++){
 			if (dir==Direction.HORIZONTALE){
-				tab[i]=new int[]{this.getX()+1*i,this.getY()};
+				coordonnees.add(new Coordonnees(this.getX()+1, this.getY()));
 			}
 			else{
-				tab[i]=new int[]{this.getX(),this.getY()+1*i};
+				coordonnees.add(new Coordonnees(this.getX(), this.getY()+1));
 			}
 		}
-		return tab;
+		return coordonnees;
 	}
 
 	public boolean estTouche(int x1, int y1){
-		for (int j=0; j<this.caseTouchee.length; j++){
-			if (getCaseTouchee()[j]==new int []{x1,y1}){
+		for (int i=0; i<coordonnees.size(); i++){
+			if (coordonnees.get(i)==(new Coordonnees(x1,y1))){
 				break;// Ajouter une exception (try catch)
 			}
-		}
-		coord=this.getCoord(dir);
-		for (int i=0; i<coord; i++){
-			if (new int []{x1,y1}==coord[i]){
-				this.setCaseTouchee(new int []{x1,y1});
+			if (new Coordonnees(x1,y1)==coordonnees.get(i)){
+				coordonnees.set(i, new Coordonnees(x1,y1));
 				return true;
 			}
-=======
-	public void estTouche(x,y,x1,y1){
-		tab=[]
-		if (this.x==this.x1 && this.y==this.y1){
-			System.out.println("Bateau touché");
-			tab.add(1);
 		}
-		else{
-			System.out.println("Raté");
->>>>>>> parent of 9f9472a... classe bateau
-		}
+		return false;
 	}
 
-	public void estCoule(tab, taille){
-		if (this.tab.length==this.taille){
-			System.out.println("Bateau coulé");
+	public boolean estCoule(){
+		if (coordonnees.size()==this.getTaille()){
+			return true;
 		}
+		return false;
 	}
 }
