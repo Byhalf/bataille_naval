@@ -40,9 +40,6 @@ public class Bateau{
 	public boolean estTouche(int x1, int y1){
 		for (int i=0; i<coordonnees.size(); i++){
 			if (coordonnees.get(i)==(new Coordonnees(x1,y1))){
-				break;// Ajouter une exception (try catch)
-			}
-			if (new Coordonnees(x1,y1)==coordonnees.get(i)){
 				coordonnees.set(i, new Coordonnees(x1,y1));
 				return true;
 			}
