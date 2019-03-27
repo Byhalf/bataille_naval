@@ -39,4 +39,24 @@ public class Mer {
         return joueur1;
     }
 
+    public Boolean estFini(){
+        for(Bateau bateau:joueur1.getFlottes()){
+            if(!bateau.estCoule())
+                return false;
+        }for(Bateau bateau:joueur2.getFlottes()){
+            if(!bateau.estCoule())
+                return false;
+        }return true;
+
+    }
+
+    public Boolean aGagner(Joueur joueur){
+        if(!estFini())
+            return false;
+        for(Bateau bateau:joueur.getFlottes()) {
+            if (!bateau.estCoule())
+                return true;
+        }return false;
+    }
+
 }
