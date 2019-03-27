@@ -1,4 +1,4 @@
-import Joueurs.*;
+import joueurs.*;
 import modele.bateau.Bateau;
 import modele.joueurs.Aleatoire;
 import modele.joueurs.Humain;

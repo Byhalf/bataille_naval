@@ -1,16 +1,28 @@
-package bateau;
+package modele.bateau;
+
+import modele.utilities.Coordonnees;
 
 import java.util.ArrayList;
 
 public class Bateau{
 	private int x, y, taille;
-	private ArrayList<Coordonnees> coordonnees = new ArrayList<Coordonnees>();
 
+
+	private ArrayList<Coordonnees> emplacements;
+	private ArrayList<Coordonnees> coordToucher = new ArrayList<Coordonnees>();
+
+	public Bateau(Coordonnees placement,int taille, Direction dir){
+		this(placement.getX(),placement.getY(),taille,dir);
+	}
 	public Bateau(int x, int y, int taille, Direction dir){
 		this.x=x;
 		this.y=y;
 		this.taille=taille;
-		this.coordonnees=getCoord(dir);
+		this.emplacements =getCoord(dir);
+	}
+
+	public ArrayList<Coordonnees> getEmplacements() {
+		return emplacements;
 	}
 
 	public int getX(){
@@ -28,29 +40,28 @@ public class Bateau{
 	public ArrayList<Coordonnees> getCoord(Direction dir){
 		for (int i=0; i<getTaille(); i++){
 			if (dir==Direction.HORIZONTALE){
-				coordonnees.add(new Coordonnees(this.getX()+1, this.getY()));
+				emplacements.add(new Coordonnees(this.getX()+i, this.getY()));
 			}
 			else{
-				coordonnees.add(new Coordonnees(this.getX(), this.getY()+1));
+				emplacements.add(new Coordonnees(this.getX(), this.getY()+i));
 			}
 		}
-		return coordonnees;
+		return emplacements;
 	}
 
-	public boolean estTouche(int x1, int y1){
-		for (int i=0; i<coordonnees.size(); i++){
-			if (coordonnees.get(i)==(new Coordonnees(x1,y1))){
-				coordonnees.set(i, new Coordonnees(x1,y1));
+	public boolean estTouche(Coordonnees caseTouche){
+		for(Coordonnees dejaTouche:coordToucher){
+			if(dejaTouche.compare(caseTouche))
+				return false;
+		}for(Coordonnees emplacement: emplacements){
+			if(emplacement.compare(caseTouche)){
+				coordToucher.add(caseTouche);
 				return true;
 			}
-		}
-		return false;
+		}return false;
 	}
 
 	public boolean estCoule(){
-		if (coordonnees.size()==this.getTaille()){
-			return true;
-		}
-		return false;
+		return coordToucher.size() == getTaille();
 	}
 }

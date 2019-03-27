@@ -1,22 +1,36 @@
 package modele.joueurs;
-
+import modele.bateau.*;
+import modele.utilities.Coordonnees;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Joueur{
 	// Il faut une arrayList des bateaux
-	Bateau bateau[][] = new Bateau[10][10];
+	Bateau grille[][] = new Bateau[10][10];
+	private ArrayList<Bateau> flottes;
 
-	public boolean placerBateau(int x, int y, Direction d, Bateau bat){
-		int coordBateau[][] = bat.getCoord(d);
-		if(estPlacable(x,y,d, bat)){
-			for(int[] coord:coordBateau){
-				bateau[coord[0]][coord[1]] = bat;
-			}return true;
-		}return false;
+
+
+	public boolean placerBateau(Coordonnees placement, Direction d, int taille){
+		//Catch exeption si ça dépasse de la grille
+
+		Bateau bateauAPlacer = new Bateau(placement,taille,d);
+		try{
+			for(Coordonnees emplacement:bateauAPlacer.getEmplacements()){
+				if(grille[emplacement.getX()][emplacement.getY()] != null)
+					return false;
+			}
+		}catch(ArrayIndexOutOfBoundsException e){
+				return false;
+			}
+		for(Coordonnees emplacement:bateauAPlacer.getEmplacements()){
+			grille[emplacement.getX()][emplacement.getY()] = bateauAPlacer;
+		}flottes.add(bateauAPlacer);
+		return true;
 	}
 
-	public Bateau[][] getBateau(){
-		return bateau;
+	public Bateau[][] getGrille(){
+		return grille;
 	}
 		
 		
