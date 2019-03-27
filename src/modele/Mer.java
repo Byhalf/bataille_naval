@@ -1,6 +1,6 @@
 package modele;
 
-import modele.*;
+import modele.joueurs.*;
 
 public class Mer {
     //Il faut une classe modele.bateau avec methode est_touche() qui renvoie un bool, modele.joueurs.Joueur avec get_bateau() qui renvoie les bateaux du joeurs,

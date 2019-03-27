@@ -4,11 +4,14 @@ import modele.utilities.Coordonnees;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Joueur{
+public abstract class Joueur{
 	// Il faut une arrayList des bateaux
 	Bateau grille[][] = new Bateau[10][10];
 	private ArrayList<Bateau> flottes;
 
+	public Bateau[][] getGrille(){
+		return grille;
+	}
 
 
 	public boolean placerBateau(Coordonnees placement, Direction d, int taille){
@@ -29,10 +32,8 @@ public class Joueur{
 		return true;
 	}
 
-	public Bateau[][] getGrille(){
-		return grille;
-	}
-		
+	public abstract Coordonnees choixPlacement(int taille);
+	public abstract Coordonnees choixTir();
 		
 
 }
