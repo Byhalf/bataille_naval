@@ -1,16 +1,33 @@
+package modele;
+
 import modele.joueurs.*;
 import modele.joueurs.Aleatoire;
 import modele.joueurs.Humain;
 import java.util.ArrayList;
 import modele.Mer;
 import modele.utilities.Coordonnees;
+import modele.utilities.EcouteurModele;
+import modele.utilities.ModeleEcouteur;
 
-public class Orchestrator {
-    Mer mer;
-    Humain joueur1;
-    Aleatoire joueur2;
+public class Modele {
+    public Mer getMer() {
+        return mer;
+    }
 
-    public Orchestrator(){
+    private Mer mer;
+
+    public Humain getJoueur1() {
+        return joueur1;
+    }
+
+    public Aleatoire getJoueur2() {
+        return joueur2;
+    }
+
+    private Humain joueur1;
+    private Aleatoire joueur2;
+
+    public Modele(){
         joueur1 = new Humain("humain");
         joueur2 = new Aleatoire("robot");
 
@@ -39,6 +56,7 @@ public class Orchestrator {
         return joueur1;
     }
 
+/*
     public void joueUnePartie(){
         Joueur joueurCourant = joueur1;
         while(!mer.estFini()){
@@ -47,4 +65,5 @@ public class Orchestrator {
             joueurCourant = getAutreJoueur(joueurCourant);
         }
     }
+    */
 }

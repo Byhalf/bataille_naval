@@ -12,11 +12,27 @@ public class Mer {
     private Joueur joueur1;
     private Joueur joueur2;
 
+    public boolean[][] getCaseTireJ1() {
+        return caseTireJ1;
+    }
+
+    public boolean[][] getCaseTireJ2() {
+        return caseTireJ2;
+    }
+
+    private boolean caseTireJ1[][] = new boolean[10][10];
+    private boolean caseTireJ2[][] = new boolean[10][10];
+
+
     public Mer(Joueur joueur1, Joueur joueur2 ){
         this.joueur1 = joueur1;
         this.joueur2 = joueur2;
     }
     public boolean tirez(Coordonnees caseSelectionne, Joueur joueur_qui_tire){
+        if(joueur_qui_tire == joueur1)
+            caseTireJ1[caseSelectionne.getX()][caseSelectionne.getY()] = true;
+        else
+            caseTireJ2[caseSelectionne.getX()][caseSelectionne.getY()] = true;
         Joueur joueur_vise = get_other_player(joueur_qui_tire);
         for(Bateau bateau: joueur_vise.getFlottes()){
             if(bateau.estTouche(caseSelectionne))
