@@ -19,7 +19,7 @@ public abstract class Joueur{
         return flottes;
     }
 
-    private ArrayList<Bateau> flottes;
+    private ArrayList<Bateau> flottes = new ArrayList<>();
 
     public Bateau[][] getGrille(){
         return grille;

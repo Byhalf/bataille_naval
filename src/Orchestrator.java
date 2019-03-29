@@ -10,6 +10,7 @@ public class Orchestrator implements EcouteurModele {
         modele = new Modele();
         vue = new ConsoleVue(modele);
         vue.dessine();
+        modele.getMer().ajoutEcouteur(this);
         Joueur gagnant = modele.joueUnePartie();
         vue.annonceGagnant(gagnant);
 

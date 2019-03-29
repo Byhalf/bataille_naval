@@ -8,7 +8,7 @@ public class Bateau{
     private int x, y, taille;
 
 
-    private ArrayList<Coordonnees> emplacements;
+    private ArrayList<Coordonnees> emplacements = new ArrayList<Coordonnees>();
     private ArrayList<Coordonnees> coordToucher = new ArrayList<Coordonnees>();
 
     public Bateau(Coordonnees placement,int taille, Direction dir){
@@ -50,6 +50,8 @@ public class Bateau{
     }
 
     public boolean estTouche(Coordonnees caseTouche){
+        if(coordToucher.size()==0)
+            return false;
         for(Coordonnees dejaTouche:coordToucher){
             if(dejaTouche.compare(caseTouche))
                 return false;

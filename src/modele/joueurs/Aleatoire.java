@@ -1,6 +1,10 @@
 package modele.joueurs;
 
 
+import modele.bateau.Bateau;
+import modele.bateau.Direction;
+import modele.utilities.Coordonnees;
+
 import java.util.Random;
 
 public class Aleatoire extends Joueur {
@@ -20,5 +24,19 @@ public class Aleatoire extends Joueur {
 		res[1] = rndy;
 		return(res);
 	}
+
+	//pour que ça compile quand je teste c'est les méthodes à changer
+	@Override
+	public Coordonnees choixTir(){
+
+		return(new Coordonnees(0,0));
+	}
+
+	@Override
+	public Bateau choixPlacement(int taille) {
+
+		return new Bateau(0,0,taille,Direction.HORIZONTALE);
+	}
+
 
 }

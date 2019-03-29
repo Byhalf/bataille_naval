@@ -53,11 +53,9 @@ public class Mer extends AbstractModeleEcouteur {
     public void placerFlotte(Joueur joueur, ArrayList<Integer> taillesBateaux){
         for(Integer taille:taillesBateaux){
             Bateau choix = joueur.choixPlacement(taille);
-            fireChangement();
             while(!joueur.placerBateau(choix)){
                 choix = joueur.choixPlacement(taille);
-                fireChangement();
-            }
+            }fireChangement();
         }
 
     }

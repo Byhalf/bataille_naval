@@ -34,10 +34,10 @@ public class Modele  {
 
         //5 bateaux 1-2 2-3 1-4 1-5
         ArrayList<Integer> typeFlotte = new ArrayList<Integer>();
-        typeFlotte.add(new Integer(2));
-        typeFlotte.add(new Integer(3));
-        typeFlotte.add(new Integer(3));
-        typeFlotte.add(new Integer(4));
+        //typeFlotte.add(new Integer(2));
+        //typeFlotte.add(new Integer(3));
+        //typeFlotte.add(new Integer(3));
+        //typeFlotte.add(new Integer(4));
         typeFlotte.add(new Integer(5));
 
         mer = new Mer(joueur1, joueur2);
