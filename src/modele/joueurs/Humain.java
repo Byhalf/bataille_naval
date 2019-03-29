@@ -1,26 +1,46 @@
 package modele.joueurs;
 
+import modele.bateau.Bateau;
+import modele.bateau.Direction;
+import modele.utilities.Coordonnees;
+
 import java.util.Scanner;
 
 public class Humain extends Joueur {
 	
-	public String name;
 
 	public Humain(String name){
-		this.name = name;
+		super(name);
 	}
-	
-	public int[] Mouvement(){
+	@Override
+	public Coordonnees choixTir(){
 		int res[] = new int[2];
 		int x, y;
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Coordonees x ?");
 		x = scanner.nextInt();
-		res[0]=x;
 		System.out.println("Coordonees y ?");
 		y = scanner.nextInt();
-		res[1]=y;
-		return(res);
+		return(new Coordonnees(x,y));
+	}
+
+	@Override
+	public Bateau choixPlacement(int taille) {
+		int x, y, z;
+		Direction d;
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Coordonees x ?");
+		x = scanner.nextInt();
+		System.out.println("Coordonees y ?");
+		y = scanner.nextInt();
+		System.out.println("direction?0=droite,1=bas");
+		z = scanner.nextInt();
+		if(z==0)
+			d = Direction.HORIZONTALE;
+		else
+			d = Direction.VERTICALE;
+		Coordonnees coord = new Coordonnees(x,y);
+		return new Bateau(coord,taille,d);
 	}
 
 	public String getName() {

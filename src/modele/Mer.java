@@ -1,4 +1,5 @@
 package modele;
+import modele.utilities.AbstractModeleEcouteur;
 import modele.utilities.Coordonnees;
 import modele.joueurs.*;
 import modele.bateau.Bateau;
@@ -6,7 +7,7 @@ import modele.bateau.Direction;
 
 import java.util.ArrayList;
 
-public class Mer {
+public class Mer extends AbstractModeleEcouteur {
     //Il faut une classe modele.bateau avec methode est_touche() qui renvoie un bool, modele.joueurs.Joueur avec get_bateau() qui renvoie les bateaux du joeurs,
     public final static int TAILLE_GRILLE = 10;
     private Joueur joueur1;
@@ -29,21 +30,33 @@ public class Mer {
         this.joueur2 = joueur2;
     }
     public boolean tirez(Coordonnees caseSelectionne, Joueur joueur_qui_tire){
-        if(joueur_qui_tire == joueur1)
-            caseTireJ1[caseSelectionne.getX()][caseSelectionne.getY()] = true;
-        else
-            caseTireJ2[caseSelectionne.getX()][caseSelectionne.getY()] = true;
+        //return true si tir possible false sinon
+        Boolean dejaChoisi;
+        if(joueur_qui_tire == joueur1 ){
+            dejaChoisi = caseTireJ1[caseSelectionne.getX()][caseSelectionne.getY()];
+            if(!dejaChoisi)
+                return false;
+        }else{
+            dejaChoisi = caseTireJ2[caseSelectionne.getX()][caseSelectionne.getY()];
+            if(!dejaChoisi)
+                return false;
+        }
         Joueur joueur_vise = get_other_player(joueur_qui_tire);
         for(Bateau bateau: joueur_vise.getFlottes()){
-            if(bateau.estTouche(caseSelectionne))
+            if(bateau.estTouche(caseSelectionne)){
+                fireChangement();
                 return true;
-        }return false;
+            }
+        }fireChangement();
+        return true;
     }
     public void placerFlotte(Joueur joueur, ArrayList<Integer> taillesBateaux){
         for(Integer taille:taillesBateaux){
             Bateau choix = joueur.choixPlacement(taille);
+            fireChangement();
             while(!joueur.placerBateau(choix)){
                 choix = joueur.choixPlacement(taille);
+                fireChangement();
             }
         }
 
@@ -62,17 +75,10 @@ public class Mer {
         }for(Bateau bateau:joueur2.getFlottes()){
             if(!bateau.estCoule())
                 return false;
-        }return true;
+        }fireChangement();
+        return true;
 
     }
 
-    public Boolean aGagner(Joueur joueur){
-        if(!estFini())
-            return false;
-        for(Bateau bateau:joueur.getFlottes()) {
-            if (!bateau.estCoule())
-                return true;
-        }return false;
-    }
 
 }

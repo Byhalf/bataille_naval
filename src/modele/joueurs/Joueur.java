@@ -5,7 +5,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Joueur{
-    // Il faut une arrayList des bateaux
+    public String getName() {
+        return name;
+    }
+
+    public String name;
+    public Joueur(String name){
+        this.name= name;
+    }
     Bateau grille[][] = new Bateau[10][10];
 
     public ArrayList<Bateau> getFlottes() {

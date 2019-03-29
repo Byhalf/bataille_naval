@@ -6,10 +6,9 @@ import java.util.Random;
 public class Aleatoire extends Joueur {
 
 	Random randomGenerator;
-	public String name;
 
 	public Aleatoire(String name) {
-		this.name = name;
+		super(name);
 		this.randomGenerator = new Random();
 	}
 
@@ -22,7 +21,4 @@ public class Aleatoire extends Joueur {
 		return(res);
 	}
 
-	public String getName() {
-		return this.name;
-	}
 }

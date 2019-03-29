@@ -5,31 +5,32 @@ import modele.joueurs.Aleatoire;
 import modele.joueurs.Humain;
 import java.util.ArrayList;
 import modele.Mer;
+import modele.utilities.AbstractModeleEcouteur;
 import modele.utilities.Coordonnees;
 import modele.utilities.EcouteurModele;
 import modele.utilities.ModeleEcouteur;
 
-public class Modele {
+public class Modele  {
     public Mer getMer() {
         return mer;
     }
 
     private Mer mer;
-
-    public Humain getJoueur1() {
+//rechanger déclaration Joeur en humain ou aléatoire une fois les tests fini, plus propre.
+    public Joueur getJoueur1() {
         return joueur1;
     }
 
-    public Aleatoire getJoueur2() {
+    public Joueur getJoueur2() {
         return joueur2;
     }
 
-    private Humain joueur1;
-    private Aleatoire joueur2;
+    private Joueur joueur1;
+    private Joueur joueur2;
 
     public Modele(){
         joueur1 = new Humain("humain");
-        joueur2 = new Aleatoire("robot");
+        joueur2 = new Humain("humain2_test");
 
         //5 bateaux 1-2 2-3 1-4 1-5
         ArrayList<Integer> typeFlotte = new ArrayList<Integer>();
@@ -44,11 +45,6 @@ public class Modele {
         mer.placerFlotte(joueur2,typeFlotte);
     }
 
-    public void joueurTour(Joueur joueur){
-        Coordonnees choix = joueur.choixTir();
-        mer.tirez(choix, joueur);
-    }
-
 
     public Joueur getAutreJoueur(Joueur joueur){
         if(joueur == joueur1)
@@ -56,14 +52,18 @@ public class Modele {
         return joueur1;
     }
 
-/*
-    public void joueUnePartie(){
+
+    public Joueur joueUnePartie(){
         Joueur joueurCourant = joueur1;
         while(!mer.estFini()){
-            Coordonnees choix = joueurCourant.choixTir();
-            mer.tirez(choix,joueurCourant);
+            boolean bonTir = false;
+            while(!bonTir){
+                Coordonnees choix = joueurCourant.choixTir();
+                bonTir = mer.tirez(choix, joueurCourant);
+            }
             joueurCourant = getAutreJoueur(joueurCourant);
-        }
+        }//le gagnant est celui qui n'a pas joué
+        return getAutreJoueur(joueurCourant);
     }
-    */
+
 }

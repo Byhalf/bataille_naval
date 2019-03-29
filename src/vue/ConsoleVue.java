@@ -2,6 +2,7 @@ package vue;
 
 import modele.Modele;
 import modele.bateau.Bateau;
+import modele.joueurs.Joueur;
 import modele.utilities.Coordonnees;
 import modele.utilities.EcouteurModele;
 
@@ -10,6 +11,9 @@ public class ConsoleVue implements EcouteurModele {
     public ConsoleVue(Modele modele){
         this.modele = modele;
 
+    }
+    public void annonceGagnant(Joueur gagnant){
+        System.out.println(gagnant.getName());
     }
     public void dessine(){
         Bateau grille1[][] = modele.getJoueur1().getGrille();
