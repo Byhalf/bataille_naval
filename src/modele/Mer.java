@@ -1,14 +1,13 @@
 package modele;
+
+import modele.bateau.Bateau;
+import modele.joueurs.Joueur;
 import modele.utilities.AbstractModeleEcouteur;
 import modele.utilities.Coordonnees;
-import modele.joueurs.*;
-import modele.bateau.Bateau;
-import modele.bateau.Direction;
 
 import java.util.ArrayList;
 
 public class Mer extends AbstractModeleEcouteur {
-    //Il faut une classe modele.bateau avec methode est_touche() qui renvoie un bool, modele.joueurs.Joueur avec get_bateau() qui renvoie les bateaux du joeurs,
     public final static int TAILLE_GRILLE = 10;
     private Joueur joueur1;
     private Joueur joueur2;
@@ -21,24 +20,31 @@ public class Mer extends AbstractModeleEcouteur {
         return caseTireJ2;
     }
 
-    private boolean caseTireJ1[][] = new boolean[10][10];
-    private boolean caseTireJ2[][] = new boolean[10][10];
+    private boolean caseTireJ1[][] = new boolean[TAILLE_GRILLE][TAILLE_GRILLE];
+    private boolean caseTireJ2[][] = new boolean[TAILLE_GRILLE][TAILLE_GRILLE];
 
 
     public Mer(Joueur joueur1, Joueur joueur2 ){
         this.joueur1 = joueur1;
         this.joueur2 = joueur2;
+        for (int i = 0; i < TAILLE_GRILLE; i++) {
+            for (int j = 0; j < TAILLE_GRILLE; j++) {
+                caseTireJ1[i][j] = false;
+                caseTireJ2[i][j] = false;
+            }
+        }
+
     }
     public boolean tirez(Coordonnees caseSelectionne, Joueur joueur_qui_tire){
         //return true si tir possible false sinon
         Boolean dejaChoisi;
         if(joueur_qui_tire == joueur1 ){
             dejaChoisi = caseTireJ1[caseSelectionne.getX()][caseSelectionne.getY()];
-            if(!dejaChoisi)
+            if (dejaChoisi)
                 return false;
         }else{
             dejaChoisi = caseTireJ2[caseSelectionne.getX()][caseSelectionne.getY()];
-            if(!dejaChoisi)
+            if (dejaChoisi)
                 return false;
         }
         Joueur joueur_vise = get_other_player(joueur_qui_tire);
