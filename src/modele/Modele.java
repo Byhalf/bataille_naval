@@ -1,7 +1,6 @@
 package modele;
 
 import modele.joueurs.Aleatoire;
-import modele.joueurs.Humain;
 import modele.joueurs.Joueur;
 import modele.utilities.Coordonnees;
 
@@ -26,7 +25,7 @@ public class Modele  {
     private Joueur joueur2;
 
     public Modele(){
-        joueur1 = new Humain("humain");
+        joueur1 = new Aleatoire("alea");
         joueur2 = new Aleatoire("robot");
 
         //5 bateaux 1-2 2-3 1-4 1-5
