@@ -38,16 +38,20 @@ public class Mer extends AbstractModeleEcouteur {
     }
     public boolean tirez(Coordonnees caseSelectionne, Joueur joueur_qui_tire){
         //return true si tir possible false sinon
+        boolean[][] caseTire;
         Boolean dejaChoisi;
         if(joueur_qui_tire == joueur1 ){
             dejaChoisi = caseTireJ1[caseSelectionne.getX()][caseSelectionne.getY()];
+            caseTire = caseTireJ1;
             if (dejaChoisi)
                 return false;
         }else{
             dejaChoisi = caseTireJ2[caseSelectionne.getX()][caseSelectionne.getY()];
+            caseTire = caseTireJ2;
             if (dejaChoisi)
                 return false;
         }
+        caseTire[caseSelectionne.getX()][caseSelectionne.getY()] = true;
         Joueur joueur_vise = get_other_player(joueur_qui_tire);
         for(Bateau bateau: joueur_vise.getFlottes()){
             if(bateau.estTouche(caseSelectionne)){

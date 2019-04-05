@@ -15,8 +15,8 @@ public class ConsoleVue  {
         System.out.println(gagnant.getName());
     }
     public void dessine(){
-        Bateau grille1[][] = modele.getJoueur1().getGrille();
-        Bateau grille2[][] = modele.getJoueur2().getGrille();
+        Bateau[][] grille1 = modele.getJoueur1().getGrille();
+        Bateau[][] grille2 = modele.getJoueur2().getGrille();
         //constante à définit (10)
         //j'ai inversé i j
         //grille j2
@@ -36,7 +36,6 @@ public class ConsoleVue  {
         //grille j1
         for(int i=0;i<10;i++){
             for(int j=0;j<10;j++){
-
                 if(grille1[j][i]!=null)
                     System.out.print("O");
                 else{
@@ -49,5 +48,4 @@ public class ConsoleVue  {
         }
         System.out.println("\n");
     }
-
 }
