@@ -18,9 +18,9 @@ public class Aleatoire extends Joueur {
 
 	public int[] Mouvement() {
 		int res[] = new int[2];
-		int rndX = randomGenerator.nextInt(11);
+        int rndX = randomGenerator.nextInt(TAILLE_GRILLE + 1);
 		res[0] = rndX;
-		int rndy = randomGenerator.nextInt(11);
+        int rndy = randomGenerator.nextInt(TAILLE_GRILLE + 1);
 		res[1] = rndy;
 		return(res);
 	}

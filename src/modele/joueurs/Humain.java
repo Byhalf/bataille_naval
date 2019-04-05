@@ -12,6 +12,7 @@ public class Humain extends Joueur {
 	public Humain(String name){
 		super(name);
 	}
+
 	@Override
 	public Coordonnees choixTir(){
 		int res[] = new int[2];
@@ -24,6 +25,7 @@ public class Humain extends Joueur {
 		return(new Coordonnees(x,y));
 	}
 
+	//Choix placement prendra 2 coordonné donné par le controleur.
 	@Override
 	public Bateau choixPlacement(int taille) {
 		int x, y, z;

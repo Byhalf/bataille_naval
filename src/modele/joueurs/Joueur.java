@@ -1,22 +1,26 @@
 package modele.joueurs;
-import modele.bateau.*;
+
+import modele.bateau.Bateau;
 import modele.utilities.Coordonnees;
+
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public abstract class Joueur{
-    public String getName() {
-        return name;
-    }
 
+    public final static int TAILLE_GRILLE = 10;
     public String name;
+    Bateau grille[][] = new Bateau[TAILLE_GRILLE][TAILLE_GRILLE];
+
     public Joueur(String name){
         this.name= name;
     }
-    Bateau grille[][] = new Bateau[10][10];
 
     public ArrayList<Bateau> getFlottes() {
         return flottes;
+    }
+
+    public String getName() {
+        return name;
     }
 
     private ArrayList<Bateau> flottes = new ArrayList<>();
