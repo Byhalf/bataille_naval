@@ -3,6 +3,11 @@ package modele.utilities;
 public class Coordonnees{
 	private int x,y;
 
+	@Override
+	public String toString() {
+		return "x=" + Integer.toString(x) + " y=" + Integer.toString(y);
+	}
+
 	public Coordonnees(int x, int y){
 		this.x=x;
 		this.y=y;

@@ -63,7 +63,7 @@ public class Mer extends AbstractModeleEcouteur {
             Bateau choix = joueur.choixPlacement(taille, this);
             while(!joueur.placerBateau(choix)){
                 choix = joueur.choixPlacement(taille, this);
-            }fireChangement();
+            }
         }
 
     }
@@ -88,7 +88,9 @@ public class Mer extends AbstractModeleEcouteur {
     public Boolean estPlacable(Joueur joueur, Bateau bateau) {
         Bateau[][] grille = joueur.getGrille();
         for (Coordonnees emplacement : bateau.getEmplacements()) {
-            if (grille[emplacement.getX()][emplacement.getY()].estTouche(emplacement))
+            if (emplacement.getX() >= TAILLE_GRILLE || emplacement.getY() >= TAILLE_GRILLE)
+                return false;
+            if (grille[emplacement.getX()][emplacement.getY()] != null)
                 return false;
         }
         return true;

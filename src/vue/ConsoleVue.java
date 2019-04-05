@@ -4,7 +4,6 @@ import modele.Modele;
 import modele.bateau.Bateau;
 import modele.joueurs.Joueur;
 import modele.utilities.Coordonnees;
-import modele.utilities.EcouteurModele;
 
 public class ConsoleVue  {
     private Modele modele;
@@ -18,7 +17,6 @@ public class ConsoleVue  {
     public void dessine(){
         Bateau grille1[][] = modele.getJoueur1().getGrille();
         Bateau grille2[][] = modele.getJoueur2().getGrille();
-
         //constante à définit (10)
         //j'ai inversé i j
         //grille j2
@@ -34,7 +32,6 @@ public class ConsoleVue  {
                 }
             }System.out.print("\n");
         }
-
         System.out.println("\n ############ \n");
         //grille j1
         for(int i=0;i<10;i++){
@@ -50,7 +47,7 @@ public class ConsoleVue  {
                 }
             }System.out.print("\n");
         }
-
+        System.out.println("\n");
     }
 
 }
