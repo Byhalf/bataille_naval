@@ -49,6 +49,11 @@ public class Bateau{
         return emplacements;
     }
 
+    public void applicationDegat(Coordonnees degat) {
+        coordToucher.add(degat);
+
+    }
+
     public boolean estTouche(Coordonnees caseTouche){
         if(coordToucher.size()==0)
             return false;
@@ -57,7 +62,6 @@ public class Bateau{
                 return false;
         }for(Coordonnees emplacement: emplacements){
             if(emplacement.compare(caseTouche)){
-                coordToucher.add(caseTouche);
                 return true;
             }
         }return false;

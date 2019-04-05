@@ -1,5 +1,6 @@
 package modele.joueurs;
 
+import modele.Mer;
 import modele.bateau.Bateau;
 import modele.utilities.Coordonnees;
 
@@ -47,7 +48,7 @@ public abstract class Joueur{
         return true;
     }
 
-    public abstract Bateau choixPlacement(int taille);
+    public abstract Bateau choixPlacement(int taille, Mer mer);
     public abstract Coordonnees choixTir();
 
 

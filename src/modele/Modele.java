@@ -1,14 +1,11 @@
 package modele;
 
-import modele.joueurs.*;
 import modele.joueurs.Aleatoire;
 import modele.joueurs.Humain;
-import java.util.ArrayList;
-import modele.Mer;
-import modele.utilities.AbstractModeleEcouteur;
+import modele.joueurs.Joueur;
 import modele.utilities.Coordonnees;
-import modele.utilities.EcouteurModele;
-import modele.utilities.ModeleEcouteur;
+
+import java.util.ArrayList;
 
 public class Modele  {
     public Mer getMer() {
@@ -30,7 +27,7 @@ public class Modele  {
 
     public Modele(){
         joueur1 = new Humain("humain");
-        joueur2 = new Humain("humain2_test");
+        joueur2 = new Aleatoire("robot");
 
         //5 bateaux 1-2 2-3 1-4 1-5
         ArrayList<Integer> typeFlotte = new ArrayList<Integer>();

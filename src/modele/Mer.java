@@ -20,6 +20,7 @@ public class Mer extends AbstractModeleEcouteur {
         return caseTireJ2;
     }
 
+    //pour ne pas tirer 2 fois la meme case (meme si il n'y a pas de bateau
     private boolean caseTireJ1[][] = new boolean[TAILLE_GRILLE][TAILLE_GRILLE];
     private boolean caseTireJ2[][] = new boolean[TAILLE_GRILLE][TAILLE_GRILLE];
 
@@ -50,6 +51,7 @@ public class Mer extends AbstractModeleEcouteur {
         Joueur joueur_vise = get_other_player(joueur_qui_tire);
         for(Bateau bateau: joueur_vise.getFlottes()){
             if(bateau.estTouche(caseSelectionne)){
+                bateau.applicationDegat(caseSelectionne);
                 fireChangement();
                 return true;
             }
@@ -58,9 +60,9 @@ public class Mer extends AbstractModeleEcouteur {
     }
     public void placerFlotte(Joueur joueur, ArrayList<Integer> taillesBateaux){
         for(Integer taille:taillesBateaux){
-            Bateau choix = joueur.choixPlacement(taille);
+            Bateau choix = joueur.choixPlacement(taille, this);
             while(!joueur.placerBateau(choix)){
-                choix = joueur.choixPlacement(taille);
+                choix = joueur.choixPlacement(taille, this);
             }fireChangement();
         }
 
@@ -85,7 +87,11 @@ public class Mer extends AbstractModeleEcouteur {
 
     public Boolean estPlacable(Joueur joueur, Bateau bateau) {
         Bateau[][] grille = joueur.getGrille();
-
+        for (Coordonnees emplacement : bateau.getEmplacements()) {
+            if (grille[emplacement.getX()][emplacement.getY()].estTouche(emplacement))
+                return false;
+        }
+        return true;
     }
 
 

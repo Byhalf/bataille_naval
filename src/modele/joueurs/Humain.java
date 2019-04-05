@@ -1,5 +1,6 @@
 package modele.joueurs;
 
+import modele.Mer;
 import modele.bateau.Bateau;
 import modele.bateau.Direction;
 import modele.utilities.Coordonnees;
@@ -27,7 +28,7 @@ public class Humain extends Joueur {
 
 	//Choix placement prendra 2 coordonné donné par le controleur.
 	@Override
-	public Bateau choixPlacement(int taille) {
+	public Bateau choixPlacement(int taille, Mer mer) {
 		int x, y, z;
 		Direction d;
 		Scanner scanner = new Scanner(System.in);
