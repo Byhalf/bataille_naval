@@ -81,6 +81,10 @@ public class Mer extends AbstractModeleEcouteur {
                 return false;
         }fireChangement();
         return true;
+    }
+
+    public Boolean estPlacable(Joueur joueur, Bateau bateau) {
+        Bateau[][] grille = joueur.getGrille();
 
     }
 
