@@ -8,7 +8,7 @@ public class Bateau{
     private int x, y, taille;
 
 
-    private ArrayList<Coordonnees> emplacements = new ArrayList<Coordonnees>();
+    private ArrayList<Coordonnees> emplacements;
     private ArrayList<Coordonnees> coordToucher = new ArrayList<Coordonnees>();
 
     public Bateau(Coordonnees placement,int taille, Direction dir){
@@ -38,6 +38,7 @@ public class Bateau{
     }
 
     public ArrayList<Coordonnees> getCoord(Direction dir){
+        ArrayList<Coordonnees> emplacements = new ArrayList<Coordonnees>();
         for (int i=0; i<getTaille(); i++){
             if (dir==Direction.HORIZONTALE){
                 emplacements.add(new Coordonnees(this.getX()+i, this.getY()));
@@ -51,12 +52,19 @@ public class Bateau{
 
     public void applicationDegat(Coordonnees degat) {
         coordToucher.add(degat);
-
     }
 
+    public boolean estEndomage(Coordonnees caseVise) {
+        for (Coordonnees caseEndomager : coordToucher) {
+            if (caseEndomager.compare(caseVise))
+                return true;
+        }
+        return false;
+    }
+
+    //J'ai eu un bug avec estTouche, car je l'utilisait pour vérifié qu'une case avait
+    //été déja touché cependant une fois qu'elle est touché ça renvoie false bref
     public boolean estTouche(Coordonnees caseTouche){
-        if(coordToucher.size()==0)
-            return false;
         for(Coordonnees dejaTouche:coordToucher){
             if(dejaTouche.compare(caseTouche))
                 return false;
