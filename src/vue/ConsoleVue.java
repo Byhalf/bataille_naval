@@ -51,7 +51,7 @@ public class ConsoleVue  {
         for(int i=0;i<10;i++){
             for(int j=0;j<10;j++){
                 if (grille1[j][i] != null) {
-                    if (grille1[j][i].estEndomage(new Coordonnees(i, j))) {
+                    if (grille1[j][i].estEndomage(new Coordonnees(j, i))) {
                         System.out.print("!");
                     } else
                         System.out.print("O");
