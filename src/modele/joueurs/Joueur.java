@@ -1,6 +1,5 @@
 package modele.joueurs;
 
-import modele.Mer;
 import modele.bateau.Bateau;
 import modele.utilities.Coordonnees;
 
@@ -9,13 +8,14 @@ import java.util.ArrayList;
 /**
  * Une instance de Joueur peut jouer à la bataille naval
  */
-public abstract class Joueur{
+public class Joueur {
 
     public final static int TAILLE_GRILLE = 10;
     public String name;
-    Bateau grille[][] = new Bateau[TAILLE_GRILLE][TAILLE_GRILLE];
+    Bateau grille[][];
 
     public Joueur(String name){
+        grille = new Bateau[TAILLE_GRILLE][TAILLE_GRILLE];
         this.name= name;
     }
 
@@ -55,20 +55,6 @@ public abstract class Joueur{
         }flottes.add(bateauAPlacer);
         return true;
     }
-
-    /**
-     * Choisi où placer un bateau
-     * Génére une liste
-     * @param taille la taille du bateau à placer
-     * @param mer permet de vérifié grace à la méthode estPlaçable si le bateau est plaçable
-     * @return un bateau, car un bateau contient toutes les information nécessaire à sont placement.
-     */
-    public abstract Bateau choixPlacement(int taille, Mer mer);
-
-    /**
-     * @return une coordonnée ou le joueur tir.
-     */
-    public abstract Coordonnees choixTir();
 
 
 }

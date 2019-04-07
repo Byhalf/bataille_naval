@@ -1,29 +1,26 @@
-package modele.joueurs;
-
+package ControleurJoueur;
 
 import modele.Mer;
+import modele.Modele;
 import modele.bateau.Bateau;
 import modele.bateau.Direction;
+import modele.joueurs.Joueur;
 import modele.utilities.Coordonnees;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * Une instance d'aléatoire jouera aléatoirement une partie de bataille navale
- */
-public class Aleatoire extends Joueur {
-
+public class Aleatoire extends Controleur {
+    public final static int TAILLE_GRILLE = 10;
     private Random randomGenerator;
+    private Joueur joueurControler;
     private ArrayList<Coordonnees> caseATirer = new ArrayList<>();
 
     /**
      * le constructeur,il initialise le random et caseATirer.
-     *
-     * @param name qui sert à le reconnaitre plus facilement
      */
-    public Aleatoire(String name) {
-        super(name);
+    public Aleatoire(Modele modele, Joueur joueur) {
+        super(joueur);
         this.randomGenerator = new Random();
         initCaseATirer();
     }
@@ -51,22 +48,20 @@ public class Aleatoire extends Joueur {
         return (res);
     }
 
-
     @Override
     public Bateau choixPlacement(int taille, Mer mer) {
         ArrayList<Bateau> possibleRes = new ArrayList<>();
         for (int i = 0; i < TAILLE_GRILLE; i++) {
             for (int j = 0; j < TAILLE_GRILLE; j++) {
                 Bateau bateau = new Bateau(new Coordonnees(i, j), taille, Direction.HORIZONTALE);
-                if (mer.estPlacable(this, bateau))
+                if (mer.estPlacable(joueurControler, bateau))
                     possibleRes.add(bateau);
                 bateau = new Bateau(new Coordonnees(i, j), taille, Direction.VERTICALE);
-                if (mer.estPlacable(this, bateau))
+                if (mer.estPlacable(joueurControler, bateau))
                     possibleRes.add(bateau);
             }
         }
         return possibleRes.get(randomGenerator.nextInt(possibleRes.size()));
     }
-
 
 }
