@@ -14,9 +14,9 @@ public class Humain extends Joueur {
 		super(name);
 	}
 
+
 	@Override
 	public Coordonnees choixTir(){
-		int res[] = new int[2];
 		int x, y;
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Coordonees x ?");
