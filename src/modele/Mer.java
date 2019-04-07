@@ -80,15 +80,15 @@ public class Mer extends AbstractModeleEcouteur {
         return joueur1;
     }
 
-    public Boolean estFini(){
-        for(Bateau bateau:joueur1.getFlottes()){
-            if(!bateau.estCoule())
+    public Boolean aPerdu(Joueur joueur) {
+        for (Bateau bateau : joueur.getFlottes()) {
+            if (!bateau.estCoule())
                 return false;
-        }for(Bateau bateau:joueur2.getFlottes()){
-            if(!bateau.estCoule())
-                return false;
-        }fireChangement();
+        }
         return true;
+    }
+    public Boolean estFini(){
+        return aPerdu(joueur1) || aPerdu(joueur2);
     }
 
     public Boolean estPlacable(Joueur joueur, Bateau bateau) {
