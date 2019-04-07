@@ -43,7 +43,7 @@ public class VueGrille1 extends JPanel implements EcouteurModele {
                         g.drawOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                     }
                 } else {
-                    if (modele.getMer().getCaseTireJ2()[j][i]) {
+                    if (modele.getMer().getCaseTireJ1()[j][i]) {
                         g.setColor(Color.blue);
                         g.fillRect(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                     } else {
