@@ -8,16 +8,16 @@ import modele.utilities.EcouteurModele;
 import javax.swing.*;
 import java.awt.*;
 
-public class VueBataille extends JPanel implements EcouteurModele {
+public class VueGrille1 extends JPanel implements EcouteurModele {
     public static final int TAILLE_CASE = 50;
     public static final int TAILLE_GRILLE = 10;
     private int dimX, dimY;
     private Modele modele;
 
-    public VueBataille(Modele modele) {
+    public VueGrille1(Modele modele) {
         //modele.ajoutEcouteur(this);
         this.modele = modele;
-        dimX = 500;
+        dimX = 510;
         dimY = 500;
         setPreferredSize(new Dimension(dimX, dimY));
     }
@@ -37,12 +37,14 @@ public class VueBataille extends JPanel implements EcouteurModele {
             for (int j = 0; j < TAILLE_GRILLE; j++) {
                 if (grille1[j][i] != null) {
                     if (grille1[j][i].estEndomage(new Coordonnees(i, j))) {
+                        g.setColor(Color.red);
                         g.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                     } else {
                         g.drawOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                     }
                 } else {
                     if (modele.getMer().getCaseTireJ2()[j][i]) {
+                        g.setColor(Color.blue);
                         g.fillRect(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                     } else {
                         g.drawRect(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
