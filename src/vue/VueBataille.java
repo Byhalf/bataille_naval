@@ -2,21 +2,23 @@ package vue;
 
 import modele.Modele;
 import modele.bateau.Bateau;
+import modele.utilities.Coordonnees;
 import modele.utilities.EcouteurModele;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class VueBataille extends JPanel implements EcouteurModele {
-    public static final int TAILLE_CASE = 10;
+    public static final int TAILLE_CASE = 50;
+    public static final int TAILLE_GRILLE = 10;
     private int dimX, dimY;
     private Modele modele;
 
     public VueBataille(Modele modele) {
         //modele.ajoutEcouteur(this);
         this.modele = modele;
-        dimX = 300;
-        dimY = 300;
+        dimX = 500;
+        dimY = 500;
         setPreferredSize(new Dimension(dimX, dimY));
     }
 
@@ -27,17 +29,23 @@ public class VueBataille extends JPanel implements EcouteurModele {
         paintLevel(g);
     }
 
-    private void paintLevel(Graphics g){
+    private void paintLevel(Graphics g) {
 
         Bateau[][] grille1 = modele.getJoueur1().getGrille();
 
-        for (int j = 0;j<dimX;j++){
-            for (int i = 0; i < dimY; i++) {
-                if (grille1[i][j] == null) {
-                    if (modele.getMer().getCaseTireJ1()[i][j]) {
-                        g.drawRect(i*TAILLE_CASE,j*TAILLE_CASE,10,10);
+        for (int i = 0; i < TAILLE_GRILLE; i++) {
+            for (int j = 0; j < TAILLE_GRILLE; j++) {
+                if (grille1[j][i] != null) {
+                    if (grille1[j][i].estEndomage(new Coordonnees(i, j))) {
+                        g.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                     } else {
-                        g.fillRect(i*TAILLE_CASE,j*TAILLE_CASE,10,10);
+                        g.drawOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                    }
+                } else {
+                    if (modele.getMer().getCaseTireJ2()[j][i]) {
+                        g.fillRect(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                    } else {
+                        g.drawRect(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                     }
                 }
             }
