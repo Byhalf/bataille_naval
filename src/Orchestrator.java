@@ -1,6 +1,5 @@
 import ControleurJoueur.Aleatoire;
 import ControleurJoueur.Controleur;
-import ControleurJoueur.JoueurConsole;
 import modele.Modele;
 import modele.bateau.Bateau;
 import modele.joueurs.Joueur;
@@ -18,8 +17,10 @@ public class Orchestrator implements EcouteurModele {
     public Orchestrator(){
         modele = new Modele();
         controleur2 = new Aleatoire(modele, modele.getJoueur2());
-        controleur1 = new JoueurConsole(modele.getJoueur1());
-        //controleur1 = new Aleatoire(modele,modele.getJoueur1());
+        //controleur1 = new JoueurConsole(modele.getJoueur1());
+        controleur1 = new Aleatoire(modele, modele.getJoueur1());
+        //controleur2 = new JoueurConsole(modele.getJoueur2());
+
 
         vue = new ConsoleVue(modele);
         vue.dessine();
@@ -35,13 +36,14 @@ public class Orchestrator implements EcouteurModele {
         typeFlotte.add(new Integer(5));
         placerFlotte(controleur1, typeFlotte);
         placerFlotte(controleur2, typeFlotte);
+        joueUnePartie();
 
     }
 
     public void placerFlotte(Controleur controleur, ArrayList<Integer> taillesBateaux) {
         for (Integer taille : taillesBateaux) {
             Bateau choix = controleur.choixPlacement(taille, modele.getMer());
-            while (!controleur.getJoueurControle().placerBateau(choix)) {
+            while (!modele.placerBateau(controleur.getJoueurControle(), choix)) {
                 choix = controleur.choixPlacement(taille, modele.getMer());
             }
         }
@@ -53,7 +55,7 @@ public class Orchestrator implements EcouteurModele {
             boolean bonTir = false;
             while (!bonTir) {
                 Coordonnees choix = controleurCourant.choixTir();
-                bonTir = modele.getMer().tirez(choix, controleurCourant.getJoueurControle());
+                bonTir = modele.tirer(controleurCourant.getJoueurControle(), choix);
             }
             controleurCourant = autreControleur(controleurCourant);
         }//le gagnant est celui qui n'a pas joué

@@ -34,14 +34,20 @@ public class Modele extends AbstractModeleEcouteur {
     }
 
 
-    public void placerBateau(Joueur joueur, Bateau choix) {
-        if (joueur.placerBateau(choix))
+    public Boolean placerBateau(Joueur joueur, Bateau choix) {
+        if (joueur.placerBateau(choix)) {
             fireChangement();
+            return true;
+        }
+        return false;
     }
 
-    public void tirer(Joueur joueur, Coordonnees choix) {
-        if (mer.tirez(choix, joueur))
+    public Boolean tirer(Joueur joueur, Coordonnees choix) {
+        if (mer.tirez(choix, joueur)) {
             fireChangement();
+            return true;
+        }
+        return false;
     }
 
 

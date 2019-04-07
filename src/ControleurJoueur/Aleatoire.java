@@ -13,7 +13,6 @@ import java.util.Random;
 public class Aleatoire extends Controleur {
     public final static int TAILLE_GRILLE = 10;
     private Random randomGenerator;
-    private Joueur joueurControler;
     private ArrayList<Coordonnees> caseATirer = new ArrayList<>();
 
     /**
@@ -54,10 +53,10 @@ public class Aleatoire extends Controleur {
         for (int i = 0; i < TAILLE_GRILLE; i++) {
             for (int j = 0; j < TAILLE_GRILLE; j++) {
                 Bateau bateau = new Bateau(new Coordonnees(i, j), taille, Direction.HORIZONTALE);
-                if (mer.estPlacable(joueurControler, bateau))
+                if (mer.estPlacable(getJoueurControle(), bateau))
                     possibleRes.add(bateau);
                 bateau = new Bateau(new Coordonnees(i, j), taille, Direction.VERTICALE);
-                if (mer.estPlacable(joueurControler, bateau))
+                if (mer.estPlacable(getJoueurControle(), bateau))
                     possibleRes.add(bateau);
             }
         }
