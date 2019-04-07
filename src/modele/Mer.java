@@ -2,12 +2,9 @@ package modele;
 
 import modele.bateau.Bateau;
 import modele.joueurs.Joueur;
-import modele.utilities.AbstractModeleEcouteur;
 import modele.utilities.Coordonnees;
 
-import java.util.ArrayList;
-
-public class Mer extends AbstractModeleEcouteur {
+public class Mer {
     public final static int TAILLE_GRILLE = 10;
     private Joueur joueur1;
     private Joueur joueur2;
@@ -56,23 +53,12 @@ public class Mer extends AbstractModeleEcouteur {
         for(Bateau bateau: joueur_vise.getFlottes()){
             if(bateau.estTouche(caseSelectionne)){
                 bateau.applicationDegat(caseSelectionne);
-                fireChangement();
                 return true;
             }
-        }fireChangement();
+        }
         return true;
     }
-    public void placerFlotte(Joueur joueur, ArrayList<Integer> taillesBateaux){
-        for(Integer taille:taillesBateaux){
-            Bateau choix = joueur.choixPlacement(taille, this);
-            fireChangement();
-            while(!joueur.placerBateau(choix)){
-                choix = joueur.choixPlacement(taille, this);
-                fireChangement();
-            }
-        }
 
-    }
 
     public Joueur get_other_player(Joueur joueur){
         if(joueur == joueur1)
@@ -80,15 +66,15 @@ public class Mer extends AbstractModeleEcouteur {
         return joueur1;
     }
 
-    public Boolean estFini(){
-        for(Bateau bateau:joueur1.getFlottes()){
-            if(!bateau.estCoule())
+    public Boolean aPerdu(Joueur joueur) {
+        for (Bateau bateau : joueur.getFlottes()) {
+            if (!bateau.estCoule())
                 return false;
-        }for(Bateau bateau:joueur2.getFlottes()){
-            if(!bateau.estCoule())
-                return false;
-        }fireChangement();
+        }
         return true;
+    }
+    public Boolean estFini(){
+        return aPerdu(joueur1) || aPerdu(joueur2);
     }
 
     public Boolean estPlacable(Joueur joueur, Bateau bateau) {
