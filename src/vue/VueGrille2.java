@@ -36,7 +36,7 @@ public class VueGrille2 extends JPanel implements EcouteurModele {
         for (int i = 0; i < TAILLE_GRILLE; i++) {
             for (int j = 0; j < TAILLE_GRILLE; j++) {
                 if (grille2[j][i] != null) {
-                    if (grille2[j][i].estEndomage(new Coordonnees(i, j))) {
+                    if (grille2[j][i].estEndomage(new Coordonnees(j, i))) {
                         g.setColor(Color.red);
                         g.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                     } else {
