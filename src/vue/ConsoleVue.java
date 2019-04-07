@@ -22,8 +22,11 @@ public class ConsoleVue  {
         //grille j2
         for(int i=0;i<10;i++){
             for(int j=0;j<10;j++){
-                if (grille2[j][i] != null && grille2[j][i].estEndomage(new Coordonnees(j, i)))
-                    System.out.print("!");
+                if (grille2[j][i] != null) {
+                    if (grille2[j][i].estEndomage(new Coordonnees(i, j)))
+                        System.out.print("!");
+                    else
+                        System.out.print("O");}
                 else{
                     if(modele.getMer().getCaseTireJ1()[j][i])
                         System.out.print("X");
