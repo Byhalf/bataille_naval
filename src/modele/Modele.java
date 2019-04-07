@@ -4,18 +4,32 @@ import modele.bateau.Bateau;
 import modele.joueurs.Joueur;
 import modele.utilities.AbstractModeleEcouteur;
 import modele.utilities.Coordonnees;
-
+/**
+ * Classe du Modele
+ */
 public class Modele extends AbstractModeleEcouteur {
     public Mer getMer() {
         return mer;
     }
-
+    /**
+     * Retourne une instance de mer
+     * @return Instance de mer
+     */
     private Mer mer;
 //rechanger déclaration Joeur en humain ou aléatoire une fois les tests fini, plus propre.
+
+    /**
+     * Retourne le joueur 1
+     * @return Joueur 1
+     */
     public Joueur getJoueur1() {
         return joueur1;
     }
 
+    /**
+     * Retourne le joueur 2
+     * @return Joueur 2
+     */
     public Joueur getJoueur2() {
         return joueur2;
     }
@@ -23,6 +37,9 @@ public class Modele extends AbstractModeleEcouteur {
     private Joueur joueur1;
     private Joueur joueur2;
 
+    /**
+     * Constructeur du modele
+     */
     public Modele(){
         joueur1 = new Joueur("alea");
         joueur2 = new Joueur("robot");
@@ -50,7 +67,11 @@ public class Modele extends AbstractModeleEcouteur {
         return false;
     }
 
-
+    /**
+     * Effectue le changement de joueur
+     * @param joueur Joueur actuel
+     * @return Joueur suivant
+     */
     public Joueur getAutreJoueur(Joueur joueur){
         if(joueur == joueur1)
             return joueur2;
