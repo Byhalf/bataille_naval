@@ -50,7 +50,12 @@ public class Modele extends AbstractModeleEcouteur {
 
     }
 
-
+    /**
+     * Permet de placer les bateaux
+     * @param joueur Joueur actuel
+     * @param choix Bateau choisi
+     * @return Booleen indiquant si on peut placer le bateau
+     */
     public Boolean placerBateau(Joueur joueur, Bateau choix) {
         if (joueur.placerBateau(choix)) {
             fireChangement();
@@ -59,6 +64,12 @@ public class Modele extends AbstractModeleEcouteur {
         return false;
     }
 
+    /**
+     * Effectue un tir
+     * @param joueur Joueur actuel
+     * @param choix Coordonnee choisi
+     * @return Booleen indiquant si le tir est faisable
+     */
     public Boolean tirer(Joueur joueur, Coordonnees choix) {
         if (mer.tirez(choix, joueur)) {
             fireChangement();

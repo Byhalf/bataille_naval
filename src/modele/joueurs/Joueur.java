@@ -14,21 +14,37 @@ public class Joueur {
     public String name;
     Bateau grille[][];
 
+    /**
+     * Constructeur du joueur
+     * @param name Nom du joueur
+     */
     public Joueur(String name){
         grille = new Bateau[TAILLE_GRILLE][TAILLE_GRILLE];
         this.name= name;
     }
 
+    /**
+     * Retourne la liste des bateaux
+     * @return Liste des batteaux
+     */
     public ArrayList<Bateau> getFlottes() {
         return flottes;
     }
 
+    /**
+     * Retourne le nom du joueur
+     * @return Nom du joueur
+     */
     public String getName() {
         return name;
     }
 
     private ArrayList<Bateau> flottes = new ArrayList<>();
 
+    /**
+     * Retourne la grille de bateau
+     * @return grille de bateau
+     */
     public Bateau[][] getGrille(){
         return grille;
     }
