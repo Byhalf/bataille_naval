@@ -2,12 +2,9 @@ package modele;
 
 import modele.bateau.Bateau;
 import modele.joueurs.Joueur;
-import modele.utilities.AbstractModeleEcouteur;
 import modele.utilities.Coordonnees;
 
-import java.util.ArrayList;
-
-public class Mer extends AbstractModeleEcouteur {
+public class Mer {
     public final static int TAILLE_GRILLE = 10;
     private Joueur joueur1;
     private Joueur joueur2;
@@ -56,23 +53,12 @@ public class Mer extends AbstractModeleEcouteur {
         for(Bateau bateau: joueur_vise.getFlottes()){
             if(bateau.estTouche(caseSelectionne)){
                 bateau.applicationDegat(caseSelectionne);
-                fireChangement();
                 return true;
             }
-        }fireChangement();
+        }
         return true;
     }
-    public void placerFlotte(Joueur joueur, ArrayList<Integer> taillesBateaux){
-        for(Integer taille:taillesBateaux){
-            Bateau choix = joueur.choixPlacement(taille, this);
-            fireChangement();
-            while(!joueur.placerBateau(choix)){
-                choix = joueur.choixPlacement(taille, this);
-                fireChangement();
-            }
-        }
 
-    }
 
     public Joueur get_other_player(Joueur joueur){
         if(joueur == joueur1)

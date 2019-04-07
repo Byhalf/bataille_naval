@@ -1,24 +1,20 @@
 package modele;
 
-import modele.joueurs.Aleatoire;
-import modele.joueurs.Humain;
+import modele.bateau.Bateau;
 import modele.joueurs.Joueur;
+import modele.utilities.AbstractModeleEcouteur;
 import modele.utilities.Coordonnees;
-
-import java.util.ArrayList;
-
 /**
  * Classe du Modele
  */
-public class Modele  {
+public class Modele extends AbstractModeleEcouteur {
+    public Mer getMer() {
+        return mer;
+    }
     /**
      * Retourne une instance de mer
      * @return Instance de mer
      */
-    public Mer getMer() {
-        return mer;
-    }
-
     private Mer mer;
 //rechanger déclaration Joeur en humain ou aléatoire une fois les tests fini, plus propre.
 
@@ -45,20 +41,30 @@ public class Modele  {
      * Constructeur du modele
      */
     public Modele(){
-        joueur1 = new Aleatoire("alea");
-        joueur2 = new Aleatoire("robot");
+        joueur1 = new Joueur("alea");
+        joueur2 = new Joueur("robot");
 
-        //5 bateaux 1-2 2-3 1-4 1-5
-        ArrayList<Integer> typeFlotte = new ArrayList<Integer>();
-        //typeFlotte.add(new Integer(2));
-        //typeFlotte.add(new Integer(3));
-        typeFlotte.add(new Integer(3));
-        typeFlotte.add(new Integer(4));
-        typeFlotte.add(new Integer(5));
+
 
         mer = new Mer(joueur1, joueur2);
-        mer.placerFlotte(joueur1,typeFlotte);
-        mer.placerFlotte(joueur2,typeFlotte);
+
+    }
+
+
+    public Boolean placerBateau(Joueur joueur, Bateau choix) {
+        if (joueur.placerBateau(choix)) {
+            fireChangement();
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean tirer(Joueur joueur, Coordonnees choix) {
+        if (mer.tirez(choix, joueur)) {
+            fireChangement();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -72,21 +78,5 @@ public class Modele  {
         return joueur1;
     }
 
-    /**
-     * Permet de jouer une partie
-     * @return Gagnant de la partie
-     */
-    public Joueur joueUnePartie(){
-        Joueur joueurCourant = joueur1;
-        while(!mer.estFini()){
-            boolean bonTir = false;
-            while(!bonTir){
-                Coordonnees choix = joueurCourant.choixTir();
-                bonTir = mer.tirez(choix, joueurCourant);
-            }
-            joueurCourant = getAutreJoueur(joueurCourant);
-        }//le gagnant est celui qui n'a pas joué
-        return getAutreJoueur(joueurCourant);
-    }
 
 }
