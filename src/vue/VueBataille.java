@@ -2,6 +2,7 @@ package vue;
 
 import modele.Modele;
 import modele.bateau.Bateau;
+import modele.utilities.Coordonnees;
 import modele.utilities.EcouteurModele;
 
 import javax.swing.*;
@@ -28,13 +29,25 @@ public class VueBataille extends JPanel implements EcouteurModele {
         paintLevel(g);
     }
 
-    private void paintLevel(Graphics g){
+    private void paintLevel(Graphics g) {
 
         Bateau[][] grille1 = modele.getJoueur1().getGrille();
 
         for (int i = 0; i < TAILLE_GRILLE; i++) {
-            for (int j = 0; j < TAILLE_GRILLE ; j++) {
-                g.drawOval(i*TAILLE_CASE,j*TAILLE_CASE,TAILLE_CASE,TAILLE_CASE);
+            for (int j = 0; j < TAILLE_GRILLE; j++) {
+                if (grille1[j][i] != null) {
+                    if (grille1[j][i].estEndomage(new Coordonnees(i, j))) {
+                        g.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                    } else {
+                        g.drawOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                    }
+                } else {
+                    if (modele.getMer().getCaseTireJ2()[j][i]) {
+                        g.fillRect(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                    } else {
+                        g.drawRect(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                    }
+                }
             }
         }
     }
