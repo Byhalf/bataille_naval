@@ -30,8 +30,6 @@ public class Aleatoire extends Joueur {
         }
     }
 
-
-
 	//pour que ça compile quand je teste c'est les méthodes à changer
 	@Override
 	public Coordonnees choixTir(){
