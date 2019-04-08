@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class Aleatoire extends Controleur {
     public final static int TAILLE_GRILLE = 10;
-    private Random randomGenerator;
+    private Random randomGenerator = new Random();
     private ArrayList<Coordonnees> caseATirer = new ArrayList<>();
 
     /**
