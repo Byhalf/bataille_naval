@@ -6,6 +6,9 @@ import modele.utilities.Coordonnees;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Classe de test du tir
+ */
 public class TestTire {
     private Modele modele = new Modele();
 
@@ -14,7 +17,7 @@ public class TestTire {
 
     @Test
     /**
-     * test que le tire est enregistré dans le tableau de booléen enregistrant les tirs.
+     * Test que le tire est enregistré dans le tableau de booléen enregistrant les tirs.
      */
     public void testTire() {
         Boolean ancien = modele.getMer().getCaseTireJ1()[1][2];

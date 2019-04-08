@@ -5,6 +5,9 @@ import modele.joueurs.Joueur;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Classe de test de la fin
+ */
 public class TestFin {
     Mer mer;
     Joueur joueur1, joueur2;
