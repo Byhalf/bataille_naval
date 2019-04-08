@@ -1,15 +1,15 @@
 import ControleurJoueur.Aleatoire;
-import ControleurJoueur.Controleur;
-import ControleurJoueur.JoueurSwing;
-import modele.Modele;
-import modele.bateau.Bateau;
-import modele.joueurs.Joueur;
-import modele.utilities.Coordonnees;
-import modele.utilities.EcouteurModele;
-import vue.ConsoleVue;
-import vue.Fenetre;
+        import ControleurJoueur.Controleur;
+        import ControleurJoueur.JoueurSwing;
+        import modele.Modele;
+        import modele.bateau.Bateau;
+        import modele.joueurs.Joueur;
+        import modele.utilities.Coordonnees;
+        import modele.utilities.EcouteurModele;
+        import vue.ConsoleVue;
+        import vue.Fenetre;
 
-import java.util.ArrayList;
+        import java.util.ArrayList;
 public class Orchestrator implements EcouteurModele {
     Modele modele;
     Fenetre vue;
