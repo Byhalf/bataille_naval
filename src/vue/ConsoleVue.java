@@ -12,6 +12,8 @@ import java.util.ArrayList;
  */
 public class ConsoleVue implements VueDessinable {
     private Modele modele;
+    public final static int TAILLE_GRILLE = 10;
+
     public ConsoleVue(Modele modele){
         this.modele = modele;
 
@@ -60,8 +62,8 @@ public class ConsoleVue implements VueDessinable {
         }
         System.out.println("\n ############ \n");
         //grille j1
-        for(int i=0; i<10; i++){
-            for(int j=0; j<10; j++){
+        for (int i = 0; i < TAILLE_GRILLE; i++) {
+            for (int j = 0; j < TAILLE_GRILLE; j++) {
                 if (grille1[j][i] != null) {
                     if (grille1[j][i].estEndomage(new Coordonnees(j, i))) {
                         System.out.print("!");
