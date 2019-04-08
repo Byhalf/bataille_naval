@@ -16,7 +16,7 @@ public class VueGrille1 extends JPanel implements VueDessinable {
     public VueGrille1(Modele modele) {
         //modele.ajoutEcouteur(this);
         this.modele = modele;
-        dimX = 510;
+        dimX = 500;
         dimY = 500;
         setPreferredSize(new Dimension(dimX, dimY));
     }
@@ -36,17 +36,21 @@ public class VueGrille1 extends JPanel implements VueDessinable {
             for (int j = 0; j < TAILLE_GRILLE; j++) {
                 if (grille1[j][i] != null) {
                     if (grille1[j][i].estEndomage(new Coordonnees(j, i))) {
-                        g.setColor(Color.red);
+                        g.setColor(Color.orange);
                         g.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+
+                        if (grille1[j][i].estCoule()) {
+                            g.setColor(Color.red);
+                            g.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                        }
                     } else {
-                        g.drawOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                        g.setColor(Color.gray);
+                        g.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                     }
                 } else {
                     if (modele.getMer().getCaseTireJ1()[j][i]) {
-                        g.setColor(Color.blue);
-                        g.fillRect(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
-                    } else {
-                        g.drawRect(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                        g.setColor(Color.green);
+                        g.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                     }
                 }
             }
