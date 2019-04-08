@@ -8,28 +8,27 @@ import modele.utilities.Coordonnees;
 import modele.utilities.EcouteurModele;
 import vue.ConsoleVue;
 import vue.Fenetre;
+import vue.VueDessinable;
 
 import java.util.ArrayList;
 public class Orchestrator implements EcouteurModele {
     Modele modele;
-    Fenetre vue;
+    VueDessinable vue;
     ConsoleVue consoleVue;
     Controleur controleur1;
     Controleur controleur2;
 
     public Orchestrator(){
         modele = new Modele();
+        controleur2=new Aleatoire(modele, modele.getJoueur2());
+        controleur1 = new Aleatoire(modele, modele.getJoueur1());
+
 
 
         vue = new Fenetre(modele);
 
         vue.dessine();
         consoleVue = new ConsoleVue(modele);
-        controleur2 = new Aleatoire(modele, modele.getJoueur2());
-        //controleur1 = new JoueurConsole(modele.getJoueur1());
-        controleur1 = new JoueurSwing(modele.getJoueur1(), vue.getGameVue(), modele);
-
-        //controleur2 = new JoueurConsole(modele.getJoueur2());
 
         modele.ajoutEcouteur(this);
         //Joueur gagnant = modele.joueUnePartie();
