@@ -8,12 +8,22 @@ import modele.utilities.Coordonnees;
 
 import java.util.Scanner;
 
+/**
+ * Classe permettant que le joueur puisse jouer en console
+ */
 public class JoueurConsole extends Controleur {
-
+    /**
+     * Constructeur du joueur
+     * @param joueur Joueur
+     */
     public JoueurConsole(Joueur joueur) {
         super(joueur);
     }
 
+    /**
+     * Permet le choix d'un tir
+     * @return Tableau de coordonnees du tir effectue
+     */
     @Override
     public Coordonnees choixTir() {
         int x, y;
@@ -25,6 +35,12 @@ public class JoueurConsole extends Controleur {
         return (new Coordonnees(x, y));
     }
 
+    /**
+     * Permet le placement des bateaux
+     * @param taille Taille du bateau
+     * @param mer Instance de Mer qui regroupe tous les elements du jeu
+     * @return Instance de bateau place au bonnes coordonnees
+     */
     @Override
     public Bateau choixPlacement(int taille, Mer mer) {
         int x, y, z;

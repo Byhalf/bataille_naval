@@ -10,6 +10,10 @@ import ControleurJoueur.Aleatoire;
         import vue.Fenetre;
 
         import java.util.ArrayList;
+
+/**
+ * Classe de l'Orchestrator
+ */
 public class Orchestrator implements EcouteurModele {
     Modele modele;
     Fenetre vue;
@@ -17,7 +21,9 @@ public class Orchestrator implements EcouteurModele {
     Controleur controleur1;
     Controleur controleur2;
 
-
+    /**
+     * Constructeur de l'Orchestrator
+     */
     public Orchestrator(){
         modele = new Modele();
 
@@ -48,6 +54,11 @@ public class Orchestrator implements EcouteurModele {
 
     }
 
+    /**
+     * Permet de placer les bateaux
+     * @param controleur Instance du controleur
+     * @param taillesBateaux Tailles des bateaux
+     */
     public void placerFlotte(Controleur controleur, ArrayList<Integer> taillesBateaux) {
         for (Integer taille : taillesBateaux) {
             Bateau choix = controleur.choixPlacement(taille, modele.getMer());
@@ -57,6 +68,10 @@ public class Orchestrator implements EcouteurModele {
         }
     }
 
+    /**
+     * Joue une partie
+     * @return Joueur gagnant la partie
+     */
     public Joueur joueUnePartie() {
         Controleur controleurCourant = controleur1;
         while (!modele.getMer().estFini()) {
@@ -70,6 +85,10 @@ public class Orchestrator implements EcouteurModele {
         return autreControleur(controleur1).getJoueurControle();
     }
 
+    /**
+     * Permet de mettre à jour les grilles
+     * @param o
+     */
     @Override
     public void modeleMisAJour(Object o){
         consoleVue.dessine();
@@ -77,6 +96,12 @@ public class Orchestrator implements EcouteurModele {
     }
 
     //Il y a pas un raccourci pour ?
+
+    /**
+     * Permet de changer Controleur
+     * @param controleur Instance du controleur
+     * @return Instance suivante de controleur
+     */
     public Controleur autreControleur(Controleur controleur) {
         if (controleur == controleur1)
             return controleur2;

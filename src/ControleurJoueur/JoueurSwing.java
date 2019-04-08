@@ -15,17 +15,24 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Classe permettant l'affichage sur une fenetre graphique du joueur
+ */
 public class JoueurSwing extends Controleur implements MouseListener, KeyListener {
     private GameVue gameVue;
     private Modele modele;
     int TAILLE_GRILLE = 10;
     int TAILLE_CASE;
     private Random randomGenerator = new Random();
-    private Coordonnees mouseClickPos = new Coordonnees(-1, -1);
     private Coordonnees mousePos = new Coordonnees(-1, -1);
     private Direction direction = Direction.HORIZONTALE;
-    private Boolean clicked = false;
 
+    /**
+     * Constructeur du joueur
+     * @param joueurControle Instance de joueur
+     * @param gameVue Instance de gamevue
+     * @param modele Instance du modele
+     */
     public JoueurSwing(Joueur joueurControle, GameVue gameVue, Modele modele) {
         super(joueurControle);
         this.gameVue = gameVue;
@@ -33,6 +40,9 @@ public class JoueurSwing extends Controleur implements MouseListener, KeyListene
         TAILLE_CASE = gameVue.getVueGrille2().getTailleCase();
     }
 
+    /**
+     * Permet d'attendre entre deux clics
+     */
     public void attend() {
         try {
             Thread.sleep(100);
@@ -41,6 +51,12 @@ public class JoueurSwing extends Controleur implements MouseListener, KeyListene
         }
     }
 
+    /**
+     * Effectue la traduction entre l'endroit clique et une case sur la grille
+     * @param x Premiere coordonnee
+     * @param y Deuxieme coordonnee
+     * @return Tableau de coordonnees contenant la case cible
+     */
     public Coordonnees mousePosConvertisseur(int x, int y) {
         int resX = 0, resY = 0;
         for (int i = 0; i < TAILLE_GRILLE; i++) {
@@ -51,49 +67,31 @@ public class JoueurSwing extends Controleur implements MouseListener, KeyListene
         }
         return new Coordonnees(resX, resY);
     }
+
+    /**
+     * Choisit un tir a effectuer
+     * @return Coordonnees du tir
+     */
     @Override
     public Coordonnees choixTir() {
         //on ajoute l'écouteur à la grille concerné
         gameVue.getVueGrille2().addMouseListener(this);
-        Coordonnees oldCoord = mouseClickPos;
-        while (oldCoord.compare(mouseClickPos)) {
+        Coordonnees oldCoord = mousePos;
+        while (oldCoord.compare(mousePos)) {
 
-            oldCoord = new Coordonnees(mouseClickPos.getX(), mouseClickPos.getY());
+            oldCoord = new Coordonnees(mousePos.getX(), mousePos.getY());
 
             attend();
         }
-        clicked = false;
-        return mouseClickPos;
+        return mousePos;
     }
-    /*
-    @Override
-    public Bateau choixPlacement(int taille, Mer mer) {
-        Bateau bateauTemp = new Bateau(mousePos,taille,direction);
-        while (!clicked){
-            Bateau[][] copieGrilleBateau = Arrays.copyOf(getJoueurControle().getGrille(),
-                    getJoueurControle().getGrille().length);
-            gameVue.remove(gameVue.getVueGrille1());
-            Modele tempModele =  new Modele();
-            tempModele.setJoueur1(new Joueur("copie",copieGrilleBateau));
-            VueGrille1 temp = new VueGrille1(tempModele);
-            gameVue.add(temp, BorderLayout.WEST);
-            temp.addMouseListener(this);
-            temp.addKeyListener(this);
-            Bateau vieuxBateau = new Bateau(mousePos,taille,direction);
-            bateauTemp = new Bateau(mousePos,taille,direction);
-            while (bateauTemp.compare(vieuxBateau)){
-                attend();
-                bateauTemp = new Bateau(mousePos,taille,direction);
-            }tempModele.placerBateau(getJoueurControle(),bateauTemp);
-            attend();
-            gameVue.remove(temp);
-        } gameVue.add(gameVue.getVueGrille1(), BorderLayout.WEST);
 
-
-        return bateauTemp;
-        }
-*/
-
+    /**
+     * Permet le placement des bateaux
+     * @param taille Taille du bateau
+     * @param mer Instance de Mer qui regroupe tous les elements du jeu
+     * @return
+     */
     @Override
     public Bateau choixPlacement(int taille, Mer mer) {
         ArrayList<Bateau> possibleRes = new ArrayList<>();
@@ -110,29 +108,48 @@ public class JoueurSwing extends Controleur implements MouseListener, KeyListene
         return possibleRes.get(randomGenerator.nextInt(possibleRes.size()));
     }
 
-    //modifie mouseClickPos
+    //modifie mousePos
+
+    /**
+     * Stocke les coordonnees d'un clic
+     * @param e Action effectue par la souris
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
-        mouseClickPos = mousePosConvertisseur(e.getX(), e.getY());
-        clicked = true;
-
+        mousePos = mousePosConvertisseur(e.getX(), e.getY());
     }
 
+    /**
+     * Detecte quand il y a un clic d'enfonce
+     * @param mouseEvent Action effectue par la souris
+     */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * Detecte quand le clic est relache
+     * @param mouseEvent Action effectue par la souris
+     */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
-        mousePos = mousePosConvertisseur(mouseEvent.getX(), mouseEvent.getY());
+
     }
 
+    /**
+     * Detecte quand la souris est sur une zone
+     * @param mouseEvent Action effectue par la souris
+     */
     @Override
     public void mouseEntered(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * Detecte quand la souris sors d'une zone
+     * @param mouseEvent Action effectue par la souris
+     */
     @Override
     public void mouseExited(MouseEvent mouseEvent) {
 

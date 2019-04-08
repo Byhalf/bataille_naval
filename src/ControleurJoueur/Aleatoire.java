@@ -16,7 +16,7 @@ public class Aleatoire extends Controleur {
     private ArrayList<Coordonnees> caseATirer = new ArrayList<>();
 
     /**
-     * le constructeur,il initialise le random et caseATirer.
+     * Constructeur qui initialise le random et caseATirer.
      */
     public Aleatoire(Modele modele, Joueur joueur) {
         super(joueur);
@@ -25,7 +25,7 @@ public class Aleatoire extends Controleur {
     }
 
     /**
-     * remplit le tableau caseATirer de coordonnées possible.
+     * Remplit le tableau caseATirer de coordonnées possible.
      */
     private void initCaseATirer() {
         for (int i = 0; i < TAILLE_GRILLE; i++) {
@@ -36,7 +36,7 @@ public class Aleatoire extends Controleur {
     }
 
     /**
-     * choisit une coordonnée du tableau case à tirer la retourne et la retire du tableau
+     * Choisit une coordonnée du tableau case à tirer la retourne et la retire du tableau
      *
      */
     @Override
@@ -47,6 +47,12 @@ public class Aleatoire extends Controleur {
         return (res);
     }
 
+    /**
+     * Place les bateaux aléatoirement
+     * @param taille Taille du bateau
+     * @param mer Instance de Mer qui regroupe tous les elements du jeu
+     * @return Tableau contenant les cases possibles pour placer les bateaux
+     */
     @Override
     public Bateau choixPlacement(int taille, Mer mer) {
         ArrayList<Bateau> possibleRes = new ArrayList<>();
