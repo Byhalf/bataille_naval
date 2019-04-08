@@ -5,6 +5,9 @@ import modele.joueurs.Joueur;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Classe de test de la fin
+ */
 public class TestFin {
     Mer mer;
     Joueur joueur1, joueur2;
@@ -13,7 +16,9 @@ public class TestFin {
     public TestFin() throws Exception {
     }
 
-
+    /**
+     * Test si la partie est finie
+     */
     @Test
     public void testFin(){
         joueur1 = new Joueur("premier");

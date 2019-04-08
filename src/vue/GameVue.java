@@ -2,9 +2,12 @@ package vue;
 
 import modele.Modele;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 import javax.swing.border.Border;
-import java.awt.*;
+import javax.swing.BorderFactory;
+import java.awt.Dimension;
+import java.awt.BorderLayout;
+import java.awt.Color;
 
 /**
  * Classe permettant d'afficher les grilles

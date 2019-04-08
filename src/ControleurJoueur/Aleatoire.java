@@ -10,6 +10,9 @@ import modele.utilities.Coordonnees;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Classe creant un joueur jouant aleatoirement
+ */
 public class Aleatoire extends Controleur {
     public final static int TAILLE_GRILLE = 10;
     private Random randomGenerator = new Random();
