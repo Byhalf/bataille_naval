@@ -1,36 +1,60 @@
 package modele.joueurs;
 
-import modele.Mer;
 import modele.bateau.Bateau;
 import modele.utilities.Coordonnees;
 
 import java.util.ArrayList;
 
-public abstract class Joueur{
+/**
+ * Une instance de Joueur peut jouer à la bataille naval
+ */
+public class Joueur {
 
     public final static int TAILLE_GRILLE = 10;
     public String name;
-    Bateau grille[][] = new Bateau[TAILLE_GRILLE][TAILLE_GRILLE];
+    Bateau grille[][];
 
+    /**
+     * Constructeur du joueur
+     * @param name Nom du joueur
+     */
     public Joueur(String name){
+        grille = new Bateau[TAILLE_GRILLE][TAILLE_GRILLE];
         this.name= name;
     }
 
+    /**
+     * Retourne la liste des bateaux
+     * @return Liste des batteaux
+     */
     public ArrayList<Bateau> getFlottes() {
         return flottes;
     }
 
+    /**
+     * Retourne le nom du joueur
+     * @return Nom du joueur
+     */
     public String getName() {
         return name;
     }
 
     private ArrayList<Bateau> flottes = new ArrayList<>();
 
+    /**
+     * Retourne la grille de bateau
+     * @return grille de bateau
+     */
     public Bateau[][] getGrille(){
         return grille;
     }
 
-
+    /**
+     * place l'instance de Bateau passer en paramêtre sur la grille des bateaux du joueur
+     *
+     * @param bateauAPlacer
+     * @return un boolean, true si le bateau à bien été placé.
+     */
     public boolean placerBateau(Bateau bateauAPlacer){
         //Catch exeption si ça dépasse de la grille
 
@@ -47,9 +71,6 @@ public abstract class Joueur{
         }flottes.add(bateauAPlacer);
         return true;
     }
-
-    public abstract Bateau choixPlacement(int taille, Mer mer);
-    public abstract Coordonnees choixTir();
 
 
 }
