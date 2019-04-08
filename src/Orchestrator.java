@@ -1,15 +1,14 @@
 import ControleurJoueur.Aleatoire;
-        import ControleurJoueur.Controleur;
-        import ControleurJoueur.JoueurSwing;
-        import modele.Modele;
-        import modele.bateau.Bateau;
-        import modele.joueurs.Joueur;
-        import modele.utilities.Coordonnees;
-        import modele.utilities.EcouteurModele;
-        import vue.ConsoleVue;
-        import vue.Fenetre;
+import ControleurJoueur.Controleur;
+import ControleurJoueur.JoueurSwing;
+import modele.Modele;
+import modele.bateau.Bateau;
+import modele.joueurs.Joueur;
+import modele.utilities.Coordonnees;
+import modele.utilities.EcouteurModele;
+import vue.Fenetre;
 
-        import java.util.ArrayList;
+import java.util.ArrayList;
 
 /**
  * Classe de l'Orchestrator
@@ -17,7 +16,7 @@ import ControleurJoueur.Aleatoire;
 public class Orchestrator implements EcouteurModele {
     Modele modele;
     Fenetre vue;
-    ConsoleVue consoleVue;
+    //ConsoleVue consoleVue;
     Controleur controleur1;
     Controleur controleur2;
 
@@ -31,7 +30,7 @@ public class Orchestrator implements EcouteurModele {
         vue = new Fenetre(modele);
 
         vue.dessine();
-        consoleVue = new ConsoleVue(modele);
+        //consoleVue = new ConsoleVue(modele);
         controleur2 = new Aleatoire(modele, modele.getJoueur2());
         //controleur1 = new JoueurConsole(modele.getJoueur1());
         controleur1 = new JoueurSwing(modele.getJoueur1(), vue.getGameVue(), modele);
@@ -91,7 +90,7 @@ public class Orchestrator implements EcouteurModele {
      */
     @Override
     public void modeleMisAJour(Object o){
-        consoleVue.dessine();
+        //consoleVue.dessine();
         vue.dessine();
     }
 

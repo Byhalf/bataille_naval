@@ -42,7 +42,7 @@ public class JoueurSwing extends Controleur implements MouseListener {
      */
     public void attend() {
         try {
-            Thread.sleep(100);
+            Thread.sleep(50);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
