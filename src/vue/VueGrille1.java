@@ -55,7 +55,7 @@ public class VueGrille1 extends JPanel implements VueDessinable {
                 } else {
                     if (modele.getMer().getCaseTireJ2()[j][i]) {
                         g.setColor(Color.green);
-                        g.fillRect(j * TAILLE_CASE, i * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                        g.fillOval(j * TAILLE_CASE, i * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                     }
                 }
             }
