@@ -21,6 +21,10 @@ public class VueGrille2 extends JPanel implements VueDessinable {
         setPreferredSize(new Dimension(dimX, dimY));
     }
 
+    public int getTailleCase(){
+        return TAILLE_CASE;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
 
