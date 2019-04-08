@@ -7,7 +7,7 @@ import modele.utilities.Coordonnees;
 
 import java.util.ArrayList;
 
-public class ConsoleVue  {
+public class ConsoleVue implements VueDessinable {
     private Modele modele;
     public ConsoleVue(Modele modele){
         this.modele = modele;
@@ -26,6 +26,8 @@ public class ConsoleVue  {
 
 
     }
+
+    @Override
     public void dessine(){
         Bateau[][] grille1 = modele.getJoueur1().getGrille();
         Bateau[][] grille2 = modele.getJoueur2().getGrille();
@@ -33,12 +35,11 @@ public class ConsoleVue  {
         //constante à définit (10)
         //j'ai inversé i j
         //grille j2
-        for(int i=0;i<10;i++){
-            for(int j=0;j<10;j++){
+        for(int i = 0; i<10; i++){
+            for(int j = 0; j<10; j++){
                 if (grille2[j][i] != null && grille2[j][i].estEndomage(new Coordonnees(j, i))) {
                     System.out.print("!");
-                }
-                else{
+                } else{
                     if(modele.getMer().getCaseTireJ1()[j][i])
                         System.out.print("X");
                     else
@@ -48,8 +49,8 @@ public class ConsoleVue  {
         }
         System.out.println("\n ############ \n");
         //grille j1
-        for(int i=0;i<10;i++){
-            for(int j=0;j<10;j++){
+        for(int i=0; i<10; i++){
+            for(int j=0; j<10; j++){
                 if (grille1[j][i] != null) {
                     if (grille1[j][i].estEndomage(new Coordonnees(j, i))) {
                         System.out.print("!");

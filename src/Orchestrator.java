@@ -6,11 +6,14 @@ import modele.joueurs.Joueur;
 import modele.utilities.Coordonnees;
 import modele.utilities.EcouteurModele;
 import vue.ConsoleVue;
+import vue.Fenetre;
+import vue.VueDessinable;
 
 import java.util.ArrayList;
 public class Orchestrator implements EcouteurModele {
     Modele modele;
-    ConsoleVue vue;
+    VueDessinable vue;
+    ConsoleVue consoleVue;
     Controleur controleur1;
     Controleur controleur2;
 
@@ -22,17 +25,18 @@ public class Orchestrator implements EcouteurModele {
         //controleur2 = new JoueurConsole(modele.getJoueur2());
 
 
-        vue = new ConsoleVue(modele);
+        vue = new Fenetre(modele);
         vue.dessine();
+        consoleVue = new ConsoleVue(modele);
         modele.ajoutEcouteur(this);
         //Joueur gagnant = modele.joueUnePartie();
         //vue.annonceGagnant(gagnant);
         //5 bateaux 1-2 2-3 1-4 1-5
         ArrayList<Integer> typeFlotte = new ArrayList<Integer>();
-        //typeFlotte.add(new Integer(2));
-        //typeFlotte.add(new Integer(3));
-        //typeFlotte.add(new Integer(3));
-        //typeFlotte.add(new Integer(4));
+        typeFlotte.add(new Integer(2));
+        typeFlotte.add(new Integer(3));
+        typeFlotte.add(new Integer(3));
+        typeFlotte.add(new Integer(4));
         typeFlotte.add(new Integer(5));
         placerFlotte(controleur1, typeFlotte);
         placerFlotte(controleur2, typeFlotte);
@@ -64,6 +68,7 @@ public class Orchestrator implements EcouteurModele {
 
     @Override
     public void modeleMisAJour(Object o){
+        consoleVue.dessine();
         vue.dessine();
     }
 

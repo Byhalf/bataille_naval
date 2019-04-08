@@ -5,14 +5,12 @@ import modele.Modele;
 import javax.swing.*;
 import java.awt.*;
 
-public class GameVue extends JPanel {
-    Modele modele;
-    VueGrille1 vueGrille1;
-    VueGrille2 vueGrille2;
-    GUI gui;
+public class GameVue extends JPanel implements VueDessinable {
+    private Modele modele;
+    private VueGrille1 vueGrille1;
+    private VueGrille2 vueGrille2;
 
-    public GameVue(Modele modele, GUI gui){
-        this.gui=gui;
+    public GameVue(Modele modele) {
         this.modele=modele;
         setPreferredSize(new Dimension(1090, 500));
 
@@ -25,5 +23,21 @@ public class GameVue extends JPanel {
 
         setFocusable(true);
         setVisible(true);
+    }
+
+    public VueGrille1 getVueGrille1() {
+        return vueGrille1;
+    }
+
+    public VueGrille2 getVueGrille2() {
+        return vueGrille2;
+    }
+
+    @Override
+    public void dessine() {
+        vueGrille1.dessine();
+        vueGrille2.dessine();
+        this.repaint();
+        this.revalidate();
     }
 }
