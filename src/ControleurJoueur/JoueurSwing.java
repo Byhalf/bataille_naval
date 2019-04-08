@@ -8,8 +8,6 @@ import modele.joueurs.Joueur;
 import modele.utilities.Coordonnees;
 import vue.GameVue;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -18,14 +16,13 @@ import java.util.Random;
 /**
  * Classe permettant l'affichage sur une fenetre graphique du joueur
  */
-public class JoueurSwing extends Controleur implements MouseListener, KeyListener {
+public class JoueurSwing extends Controleur implements MouseListener {
     private GameVue gameVue;
     private Modele modele;
     int TAILLE_GRILLE = 10;
     int TAILLE_CASE;
     private Random randomGenerator = new Random();
     private Coordonnees mousePos = new Coordonnees(-1, -1);
-    private Direction direction = Direction.HORIZONTALE;
 
     /**
      * Constructeur du joueur
@@ -45,7 +42,7 @@ public class JoueurSwing extends Controleur implements MouseListener, KeyListene
      */
     public void attend() {
         try {
-            Thread.sleep(100);
+            Thread.sleep(50);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
@@ -55,7 +52,7 @@ public class JoueurSwing extends Controleur implements MouseListener, KeyListene
      * Effectue la traduction entre l'endroit clique et une case sur la grille
      * @param x Premiere coordonnee
      * @param y Deuxieme coordonnee
-     * @return Tableau de coordonnees contenant la case cible
+     * @return coordonnees contenant la case cible
      */
     public Coordonnees mousePosConvertisseur(int x, int y) {
         int resX = 0, resY = 0;
@@ -155,21 +152,4 @@ public class JoueurSwing extends Controleur implements MouseListener, KeyListene
 
     }
 
-    @Override
-    public void keyTyped(KeyEvent keyEvent) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent keyEvent) {
-        if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT || keyEvent.getKeyCode() == KeyEvent.VK_LEFT)
-            direction = Direction.HORIZONTALE;
-        if (keyEvent.getKeyCode() == KeyEvent.VK_DOWN || keyEvent.getKeyCode() == KeyEvent.VK_UP)
-            direction = Direction.VERTICALE;
-    }
-
-    @Override
-    public void keyReleased(KeyEvent keyEvent) {
-
-    }
 }
