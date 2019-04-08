@@ -17,6 +17,7 @@ public class Orchestrator implements EcouteurModele {
     Controleur controleur1;
     Controleur controleur2;
 
+
     public Orchestrator(){
         modele = new Modele();
 
