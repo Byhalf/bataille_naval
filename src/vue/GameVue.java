@@ -2,12 +2,9 @@ package vue;
 
 import modele.Modele;
 
-import javax.swing.JPanel;
-import javax.swing.BorderFactory;
+import javax.swing.*;
 import javax.swing.border.Border;
-import java.awt.Dimension;
-import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * Classe permettant d'afficher les grilles
@@ -28,6 +25,7 @@ public class GameVue extends JPanel implements VueDessinable {
         setLayout(new BorderLayout());
         vueGrille1 = new VueGrille1(modele);
         vueGrille2 = new VueGrille2(modele);
+
         Border blackline = BorderFactory.createLineBorder(Color.black);
         vueGrille1.setBorder(blackline);
         vueGrille2.setBorder(blackline);
