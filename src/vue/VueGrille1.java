@@ -42,16 +42,16 @@ public class VueGrille1 extends JPanel implements VueDessinable {
                 if (grille1[j][i] != null) {
                     if (grille1[j][i].estEndomage(new Coordonnees(j, i))) {
                         g.setColor(Color.red);
-                        g.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                        g.fillOval(j * TAILLE_CASE, i * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                     } else {
-                        g.drawOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                        g.drawOval(j * TAILLE_CASE, i * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                     }
                 } else {
-                    if (modele.getMer().getCaseTireJ1()[j][i]) {
+                    if (modele.getMer().getCaseTireJ2()[j][i]) {
                         g.setColor(Color.blue);
-                        g.fillRect(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                        g.fillRect(j * TAILLE_CASE, i * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                     } else {
-                        g.drawRect(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                        g.drawRect(j * TAILLE_CASE, i * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                     }
                 }
             }
