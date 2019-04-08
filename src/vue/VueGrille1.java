@@ -44,7 +44,7 @@ public class VueGrille1 extends JPanel implements VueDessinable {
                             g.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                         }
                     } else {
-                        g.setColor(Color.gray);
+                        g.setColor(Color.blue);
                         g.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                     }
                 } else {
