@@ -7,12 +7,20 @@ import modele.utilities.Coordonnees;
 
 import java.util.ArrayList;
 
+/**
+ * Classe permettant l'affichage en console
+ */
 public class ConsoleVue implements VueDessinable {
     private Modele modele;
     public ConsoleVue(Modele modele){
         this.modele = modele;
 
     }
+
+    /**
+     * Annonce le gagnant
+     * @param gagnant Instance d'un joueur
+     */
     public void annonceGagnant(Joueur gagnant){
         System.out.println(gagnant.getName());
         ArrayList<Bateau> flotte1 = modele.getJoueur1().getFlottes();
@@ -27,6 +35,9 @@ public class ConsoleVue implements VueDessinable {
 
     }
 
+    /**
+     * Permet d'afficher la grille en console
+     */
     @Override
     public void dessine(){
         Bateau[][] grille1 = modele.getJoueur1().getGrille();
