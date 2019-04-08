@@ -6,11 +6,14 @@ import modele.joueurs.Joueur;
 import modele.utilities.Coordonnees;
 import modele.utilities.EcouteurModele;
 import vue.ConsoleVue;
+import vue.Fenetre;
+import vue.VueDessinable;
 
 import java.util.ArrayList;
 public class Orchestrator implements EcouteurModele {
     Modele modele;
-    ConsoleVue vue;
+    VueDessinable vue;
+    ConsoleVue consoleVue;
     Controleur controleur1;
     Controleur controleur2;
 
@@ -22,8 +25,9 @@ public class Orchestrator implements EcouteurModele {
         //controleur2 = new JoueurConsole(modele.getJoueur2());
 
 
-        vue = new ConsoleVue(modele);
+        vue = new Fenetre(modele);
         vue.dessine();
+        consoleVue = new ConsoleVue(modele);
         modele.ajoutEcouteur(this);
         //Joueur gagnant = modele.joueUnePartie();
         //vue.annonceGagnant(gagnant);
@@ -64,6 +68,7 @@ public class Orchestrator implements EcouteurModele {
 
     @Override
     public void modeleMisAJour(Object o){
+        consoleVue.dessine();
         vue.dessine();
     }
 

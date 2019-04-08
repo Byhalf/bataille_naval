@@ -7,7 +7,7 @@ import modele.utilities.Coordonnees;
 import javax.swing.*;
 import java.awt.*;
 
-public class VueGrille1 extends JPanel {
+public class VueGrille1 extends JPanel implements VueDessinable {
     public static final int TAILLE_CASE = 50;
     public static final int TAILLE_GRILLE = 10;
     private int dimX, dimY;
@@ -52,11 +52,11 @@ public class VueGrille1 extends JPanel {
             }
         }
     }
-/*
+
     @Override
-    public void modeleMisAJour(Object source) {
+    public void dessine() {
         this.repaint();
         this.revalidate();
     }
-    */
+
 }

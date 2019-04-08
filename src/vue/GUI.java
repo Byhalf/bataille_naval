@@ -10,7 +10,7 @@ public class GUI extends JFrame {
     public GUI(){
         super("Bataille Navale");
         GUI thisGui = this;
-        gameVue = new GameVue(new Modele(), thisGui);
+        gameVue = new GameVue(new Modele());
 
         add(gameVue);
         pack();
