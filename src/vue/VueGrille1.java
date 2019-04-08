@@ -8,10 +8,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class VueGrille1 extends JPanel implements VueDessinable {
+    public static int getTailleCase() {
+        return TAILLE_CASE;
+    }
+
     public static final int TAILLE_CASE = 50;
     public static final int TAILLE_GRILLE = 10;
     private int dimX, dimY;
     private Modele modele;
+
 
     public VueGrille1(Modele modele) {
         //modele.ajoutEcouteur(this);

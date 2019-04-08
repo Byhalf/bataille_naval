@@ -66,4 +66,6 @@ public class ConsoleVue implements VueDessinable {
         }
         System.out.println("\n");
     }
+
+
 }

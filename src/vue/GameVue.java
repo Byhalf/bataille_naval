@@ -40,4 +40,6 @@ public class GameVue extends JPanel implements VueDessinable {
         this.repaint();
         this.revalidate();
     }
+
+
 }

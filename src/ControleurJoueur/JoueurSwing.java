@@ -17,13 +17,15 @@ public class JoueurSwing extends Controleur implements MouseListener {
     private GameVue gameVue;
     private Modele modele;
     int TAILLE_GRILLE = 10;
+    int TAILLE_CASE;
     private Random randomGenerator = new Random();
-    private Coordonnees mousePos:
+    private Coordonnees mousePos = new Coordonnees(-1, -1);
 
     public JoueurSwing(Joueur joueurControle, GameVue gameVue, Modele modele) {
         super(joueurControle);
         this.gameVue = gameVue;
         this.modele = modele;
+        TAILLE_CASE = gameVue.getVueGrille2().getTailleCase();
     }
 
     public void attend() {
@@ -35,19 +37,24 @@ public class JoueurSwing extends Controleur implements MouseListener {
     }
 
     public Coordonnees mousePosConvertisseur(int x, int y) {
-        int resX, resY;
+        int resX = 0, resY = 0;
         for (int i = 0; i < TAILLE_GRILLE; i++) {
-            for (int j = 0; j < TAILLE_GRILLE; j++) {
-
-            }
+            if (x > i * TAILLE_CASE && x < TAILLE_CASE * (i + 1))
+                resX = i;
+            if (y > i * TAILLE_CASE && y < TAILLE_CASE * (i + 1))
+                resY = i;
         }
+        return new Coordonnees(resX, resY);
     }
     @Override
     public Coordonnees choixTir() {
-        Coordonnees oldCoord = new Coordonnees(mousePos.getX(), mousePos.getY());
         //on ajoute l'écouteur à la grille concerné
         gameVue.getVueGrille2().addMouseListener(this);
+        Coordonnees oldCoord = mousePos;
         while (oldCoord.compare(mousePos)) {
+
+            oldCoord = new Coordonnees(mousePos.getX(), mousePos.getY());
+
             attend();
         }
         return mousePos;
@@ -72,6 +79,26 @@ public class JoueurSwing extends Controleur implements MouseListener {
     //modifie mousePos
     @Override
     public void mouseClicked(MouseEvent e) {
-        mousePos = new Coordonnees(e.getX())
+        mousePos = mousePosConvertisseur(e.getX(), e.getY());
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+
     }
 }
