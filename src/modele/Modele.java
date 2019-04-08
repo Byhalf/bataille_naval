@@ -43,9 +43,6 @@ public class Modele extends AbstractModeleEcouteur {
     public Modele(){
         joueur1 = new Joueur("alea");
         joueur2 = new Joueur("robot");
-
-
-
         mer = new Mer(joueur1, joueur2);
 
     }
