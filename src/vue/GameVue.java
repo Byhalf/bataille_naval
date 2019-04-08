@@ -5,7 +5,7 @@ import modele.Modele;
 import javax.swing.*;
 import java.awt.*;
 
-public class GameVue extends JPanel {
+public class GameVue extends JPanel implements VueDessinable {
     Modele modele;
     VueGrille1 vueGrille1;
     VueGrille2 vueGrille2;
@@ -25,5 +25,11 @@ public class GameVue extends JPanel {
 
         setFocusable(true);
         setVisible(true);
+    }
+
+    @Override
+    public void dessine() {
+        this.repaint();
+        this.revalidate();
     }
 }

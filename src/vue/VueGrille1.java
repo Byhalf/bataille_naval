@@ -3,12 +3,11 @@ package vue;
 import modele.Modele;
 import modele.bateau.Bateau;
 import modele.utilities.Coordonnees;
-import modele.utilities.EcouteurModele;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class VueGrille1 extends JPanel implements EcouteurModele {
+public class VueGrille1 extends JPanel {
     public static final int TAILLE_CASE = 50;
     public static final int TAILLE_GRILLE = 10;
     private int dimX, dimY;
@@ -53,10 +52,11 @@ public class VueGrille1 extends JPanel implements EcouteurModele {
             }
         }
     }
-
+/*
     @Override
     public void modeleMisAJour(Object source) {
         this.repaint();
         this.revalidate();
     }
+    */
 }
